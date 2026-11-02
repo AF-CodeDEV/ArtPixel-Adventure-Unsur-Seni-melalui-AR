@@ -1957,6 +1957,384 @@
             .visual-demo-card { min-height: 85px; padding: 6px; }
             #mascot-box { display: none; }
         }
+
+        /* =========================================================
+           SISTEM RESPONSIF MULTI-PERANTI PENUH (TELEFON, IPAD & LAPTOP)
+           MENGELAKKAN SEBARANG PERTINDIHAN (OVERLAP) ATAU BUTANG TERKELUAR SKRIN
+           ========================================================= */
+        .top-utility-bar {
+            top: max(6px, env(safe-area-inset-top, 6px)) !important;
+            left: max(8px, env(safe-area-inset-left, 8px)) !important;
+            right: max(8px, env(safe-area-inset-right, 8px)) !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto;
+            scrollbar-width: none;
+            gap: 6px !important;
+        }
+        .top-utility-bar::-webkit-scrollbar { display: none; }
+        .utility-group {
+            flex-wrap: nowrap !important;
+            gap: 6px !important;
+            flex-shrink: 0;
+        }
+        .badge-arcade {
+            white-space: nowrap;
+            padding: clamp(5px, 0.8vh, 8px) clamp(7px, 1vw, 12px) !important;
+            font-size: clamp(0.42rem, 0.85vw, 0.56rem) !important;
+        }
+
+        /* MENU UTAMA: Susun atur Flex menegak tanpa pertindihan pada semua saiz skrin */
+        #main-menu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: max(46px, calc(env(safe-area-inset-top, 8px) + 40px)) 12px max(62px, calc(env(safe-area-inset-bottom, 8px) + 54px)) 12px !important;
+            gap: clamp(6px, 1.4vh, 14px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            pointer-events: auto;
+        }
+        #main-menu[style*="block"] {
+            display: flex !important;
+        }
+        #main-menu .header-banner {
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            transform: none !important;
+            width: min(860px, 96vw) !important;
+            min-width: 0 !important;
+            padding: clamp(6px, 1.2vh, 12px) clamp(12px, 2.2vw, 28px) !important;
+            margin: 0 auto !important;
+            flex-shrink: 0;
+        }
+        #main-menu .header-banner h1 {
+            font-size: clamp(0.72rem, 1.8vw, 1.25rem) !important;
+            margin: 0 0 4px !important;
+        }
+        #main-menu .header-banner p {
+            font-size: clamp(0.62rem, 1.15vw, 0.9rem) !important;
+            padding: 3px 10px !important;
+        }
+        #main-menu .set-induksi-banner-wrap {
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            transform: none !important;
+            width: min(1080px, 96vw) !important;
+            margin: 0 auto !important;
+            flex-shrink: 0;
+        }
+        #main-menu .worlds-grid {
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            transform: none !important;
+            width: min(1080px, 96vw) !important;
+            margin: auto !important;
+            flex: 1;
+            align-content: center;
+        }
+
+        /* SEMUA ZON NOTA (ZON 1, 2, 3): Pastikan bar bawah sentiasa kelihatan & tidak bertindih dengan maskot */
+        .world-scene {
+            padding: max(48px, calc(env(safe-area-inset-top, 8px) + 42px)) clamp(10px, 2vw, 22px) max(64px, calc(env(safe-area-inset-bottom, 8px) + 56px)) clamp(10px, 2vw, 22px) !important;
+            overflow: hidden !important;
+            gap: clamp(6px, 1.2vh, 12px);
+        }
+        .mario-blocks-row {
+            flex-shrink: 0;
+            gap: clamp(6px, 1.5vw, 16px) !important;
+            padding-top: 2px !important;
+        }
+        .q-block-3d {
+            width: clamp(68px, 18vw, 112px) !important;
+            height: clamp(50px, 9vh, 80px) !important;
+        }
+        .mario-powerup-stage, .luigi-hologram-screen, .toad-star-card {
+            min-height: 0 !important;
+            flex: 1 1 auto !important;
+            overflow-y: auto !important;
+            margin: 4px 0 !important;
+            padding: clamp(10px, 1.8vh, 18px) clamp(12px, 2vw, 24px) !important;
+        }
+        .luigi-pipe-arena, .toad-house-wrapper {
+            min-height: 0 !important;
+            flex: 1 1 auto !important;
+            overflow: hidden !important;
+        }
+        .luigi-pipe-beam {
+            height: clamp(12px, 2.2vh, 22px) !important;
+            flex-shrink: 0;
+        }
+        .pipe-rim {
+            min-height: clamp(44px, 6.5vh, 64px) !important;
+            padding: 6px 10px !important;
+            gap: clamp(6px, 1.2vw, 12px) !important;
+        }
+        .btn-pipe-valve {
+            min-height: clamp(34px, 5vh, 46px) !important;
+            padding: 6px 8px !important;
+            font-size: clamp(0.45rem, 0.95vw, 0.72rem) !important;
+        }
+        .pipe-neck {
+            height: clamp(12px, 2.2vh, 28px) !important;
+        }
+        .toad-mushroom-dome {
+            height: clamp(38px, 6vh, 58px) !important;
+            flex-shrink: 0;
+        }
+        .toad-dome-title {
+            font-size: clamp(0.42rem, 0.9vw, 0.62rem) !important;
+            padding: 4px 10px !important;
+            max-width: 92%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .toad-chests-row {
+            flex-shrink: 0;
+            gap: clamp(5px, 1.2vw, 14px) !important;
+        }
+        .btn-toad-chest {
+            padding: clamp(6px, 1vh, 9px) clamp(6px, 1vw, 10px) !important;
+            font-size: clamp(0.42rem, 0.85vw, 0.55rem) !important;
+        }
+        .bottom-Control-bar {
+            flex-shrink: 0;
+            margin-top: 4px !important;
+            gap: 8px !important;
+            width: 100%;
+        }
+
+        /* SET INDUKSI (#scene-dunia-0): Padat & Muat Skrin Penuh Tanpa Perlu Skrol Jauh */
+        #scene-dunia-0 {
+            padding: max(44px, calc(env(safe-area-inset-top, 6px) + 38px)) clamp(8px, 1.6vw, 16px) clamp(8px, 1.5vh, 14px) clamp(8px, 1.6vw, 16px) !important;
+            overflow-y: auto !important;
+            gap: clamp(6px, 1vh, 10px) !important;
+        }
+        .z0-header {
+            padding: clamp(6px, 1vh, 9px) clamp(8px, 1.4vw, 14px) !important;
+            gap: 6px !important;
+        }
+        .z0-title-group h1 {
+            font-size: clamp(0.62rem, 1.3vw, 0.98rem) !important;
+        }
+        .z0-title-group p {
+            font-size: clamp(0.62rem, 1vw, 0.76rem) !important;
+        }
+        .z0-hud-stats {
+            gap: 5px !important;
+        }
+        .z0-stat-pill {
+            padding: 4px 7px !important;
+            font-size: clamp(0.42rem, 0.8vw, 0.54rem) !important;
+            gap: 4px !important;
+        }
+        .z0-main-layout {
+            min-height: 0 !important;
+            flex: 1 1 auto !important;
+            gap: clamp(8px, 1.4vw, 16px) !important;
+        }
+        #z0-maze-canvas {
+            width: min(100%, min(68dvh, 540px)) !important;
+            max-height: 68dvh;
+        }
+        .z0-banner-inner {
+            padding: 6px 12px !important;
+            max-width: 94%;
+        }
+
+        /* Susun atur Set Induksi pada Tablet Potret & Telefon Pintar (Maze + Kawalan Muat 1 Skrin!) */
+        @media (max-width: 900px) {
+            .z0-title-group p { display: none; }
+            .z0-main-layout {
+                grid-template-columns: 1fr !important;
+                align-items: start !important;
+                gap: 6px !important;
+            }
+            .z0-canvas-wrap {
+                min-height: 0 !important;
+                height: auto !important;
+            }
+            #z0-maze-canvas {
+                width: min(86vw, 41dvh) !important;
+                max-height: 41dvh !important;
+            }
+            .z0-side-panel {
+                gap: 6px !important;
+            }
+            .z0-card {
+                padding: 7px 10px !important;
+            }
+            .z0-card h2 {
+                font-size: 0.52rem !important;
+                margin-bottom: 4px !important;
+            }
+            .z0-card p {
+                font-size: 0.68rem !important;
+                margin-bottom: 4px !important;
+            }
+            .z0-joystick-base {
+                width: 82px !important;
+                height: 82px !important;
+            }
+            .z0-joystick-stick {
+                width: 34px !important;
+                height: 34px !important;
+            }
+            .z0-dpad-grid {
+                grid-template-columns: repeat(3, 36px) !important;
+                grid-template-rows: repeat(3, 32px) !important;
+                gap: 3px !important;
+            }
+            .z0-dpad-btn {
+                width: 36px !important;
+                height: 32px !important;
+            }
+            .z0-legend-grid {
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 4px !important;
+            }
+            .z0-legend-item {
+                padding: 4px 5px !important;
+                font-size: 0.62rem !important;
+                gap: 4px !important;
+            }
+            .z0-legend-item span { display: none; }
+            .z0-legend-icon {
+                width: 22px !important;
+                height: 22px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .z0-legend-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            #z0-maze-canvas {
+                width: min(88vw, 38dvh) !important;
+                max-height: 38dvh !important;
+            }
+        }
+
+        /* APRESIASI (#scene-dunia-4): Header, Kamera & Panel Pilihan Tidak Bertindih Pada Sebarang Peranti */
+        .z4-theatre-header {
+            margin: max(44px, calc(env(safe-area-inset-top, 6px) + 38px)) auto 0 !important;
+            width: min(1360px, 96vw) !important;
+            padding: clamp(6px, 1vh, 10px) clamp(10px, 1.5vw, 18px) !important;
+            gap: 8px !important;
+            flex-shrink: 0;
+        }
+        .z4-header-title-wrap h1 {
+            font-size: clamp(0.68rem, 1.4vw, 1.15rem) !important;
+        }
+        .z4-subtitle {
+            font-size: clamp(0.4rem, 0.75vw, 0.5rem) !important;
+        }
+        .z4-curtain-controls {
+            gap: 6px !important;
+        }
+        .z4-btn {
+            padding: clamp(6px, 1vh, 10px) clamp(9px, 1.2vw, 16px) !important;
+            font-size: clamp(0.46rem, 0.85vw, 0.58rem) !important;
+        }
+        .z4-content {
+            min-height: 0 !important;
+            flex: 1 1 auto !important;
+            padding: clamp(8px, 1.5vh, 16px) clamp(10px, 2vw, 24px) clamp(12px, 2vh, 24px) !important;
+            overflow-y: auto !important;
+        }
+        .z4-stage.open .z4-stage-col {
+            min-height: 0 !important;
+            height: 100%;
+            justify-content: space-between !important;
+            padding-bottom: 6px !important;
+        }
+        .z4-applause {
+            min-height: clamp(48px, 7vh, 68px) !important;
+            padding: clamp(8px, 1.2vh, 12px) clamp(12px, 1.8vw, 20px) !important;
+            font-size: clamp(0.82rem, 1.5vw, 1.2rem) !important;
+            margin-top: 8px !important;
+        }
+        .z4-panel {
+            padding: clamp(12px, 2vh, 20px) clamp(12px, 2vw, 22px) !important;
+            max-height: 76dvh;
+            overflow-y: auto;
+        }
+        .z4-answer {
+            padding: clamp(8px, 1.2vh, 11px) clamp(10px, 1.4vw, 15px) !important;
+            font-size: clamp(0.8rem, 1.2vw, 0.94rem) !important;
+            margin: 6px auto !important;
+        }
+        @media (max-width: 900px) {
+            .z4-subtitle { display: none; }
+            .z4-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+                align-items: stretch !important;
+            }
+            .z4-stage.open .z4-stage-col {
+                min-height: 24dvh !important;
+            }
+            .z4-panel {
+                max-height: 48dvh !important;
+                padding: 10px 12px !important;
+            }
+            .z4-category {
+                padding: 6px 10px !important;
+                font-size: 0.78rem !important;
+            }
+        }
+
+        /* HUD PERMAINAN AR (#game-hud): Kekal 1 Baris Kemas Supaya Tidak Menindih Kanvas Permainan */
+        #game-hud {
+            flex-wrap: nowrap !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            gap: 6px !important;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        #game-hud::-webkit-scrollbar { display: none; }
+        .hud-card {
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        /* Landskap Telefon Pintar / Skrin Rendah (max-height: 540px) */
+        @media (max-height: 540px) {
+            #main-menu {
+                padding-top: 40px !important;
+                padding-bottom: 10px !important;
+                gap: 4px !important;
+            }
+            #main-menu .worlds-grid {
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 6px !important;
+            }
+            .btn-floating-character {
+                padding: 6px 6px !important;
+            }
+            .char-emblem-wrap {
+                width: 44px !important;
+                height: 44px !important;
+                margin: 2px 0 4px !important;
+            }
+            .world-scene {
+                padding-top: 42px !important;
+                padding-bottom: 10px !important;
+            }
+            .z0-main-layout {
+                grid-template-columns: minmax(200px, 1fr) 300px !important;
+            }
+            #z0-maze-canvas {
+                width: min(100%, 72dvh) !important;
+                max-height: 72dvh !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -4221,7 +4599,7 @@
                 });
 
                 document.getElementById('home-bg-wrap').style.display = 'block';
-                document.getElementById('main-menu').style.display = 'block';
+                document.getElementById('main-menu').style.display = 'flex';
                 document.getElementById('note-modal').style.display = 'none';
                 document.getElementById('game-hud').style.display = 'none';
                 document.getElementById('result-screen').style.display = 'none';
@@ -5189,6 +5567,17 @@
             static d3Hazards = []; // Tiada bom di Zon 3 mengikut permintaan pengguna!
             static d3OneUpOrb = null;
 
+            static getSafeHudTop() {
+                const hud = document.getElementById('game-hud');
+                if (hud && hud.style.display !== 'none') {
+                    const rect = hud.getBoundingClientRect();
+                    if (rect && rect.bottom > 0) {
+                        return Math.max(58, Math.min(window.innerHeight * 0.22, rect.bottom + 10));
+                    }
+                }
+                return window.innerWidth < 640 ? 58 : 74;
+            }
+
             static clearActiveGameObjects() {
                 this.orbs = [];
                 this.particles = [];
@@ -5328,18 +5717,19 @@
                 const h = window.innerHeight;
                 const isPortraitPhone = (w < 560 && h > w);
                 const isCompact = (w < 768 || h < 540);
-                const btnW = isPortraitPhone ? Math.min(148, w * 0.42) : (isCompact ? 126 : 146);
-                const btnH = isCompact ? 42 : 46;
+                const btnW = isPortraitPhone ? Math.min(142, w * 0.42) : (isCompact ? 124 : 146);
+                const btnH = isCompact ? 40 : 46;
+                const safeBottom = Math.max(34, h * 0.065);
 
-                if (isPortraitPhone) {
-                    // Pada telefon pintar potret, susun butang Reset (Kiri Bawah) & Hantar (Kanan Bawah) supaya mudah ditekan dengan ibu jari
-                    const bottomY = h - 38;
-                    this.d3ResetBtn = { x: w * 0.27, y: bottomY, w: btnW, h: btnH };
-                    this.d3SimFistBtn = { x: w * 0.73, y: bottomY, w: btnW, h: btnH };
+                if (isPortraitPhone || w < 680) {
+                    // Pada telefon pintar / skrin sempit, susun butang Reset (Kiri Bawah) & Hantar (Kanan Bawah) supaya tiada pertindihan
+                    const bottomY = h - safeBottom;
+                    this.d3ResetBtn = { x: w * 0.26, y: bottomY, w: btnW, h: btnH };
+                    this.d3SimFistBtn = { x: w * 0.74, y: bottomY, w: btnW, h: btnH };
                 } else {
-                    const bx = isCompact ? 74 : 88;
-                    this.d3ResetBtn = { x: bx, y: h - (isCompact ? 92 : 112), w: btnW, h: btnH };
-                    this.d3SimFistBtn = { x: bx, y: h - (isCompact ? 42 : 56), w: btnW, h: btnH };
+                    const bx = Math.max(btnW / 2 + 14, isCompact ? 76 : 92);
+                    this.d3ResetBtn = { x: bx, y: h - safeBottom - btnH - 10, w: btnW, h: btnH };
+                    this.d3SimFistBtn = { x: bx, y: h - safeBottom, w: btnW, h: btnH };
                 }
             }
 
@@ -5986,18 +6376,20 @@
             static getDunia1Layout(w, h) {
                 const isPortraitPhone = (w < 560 && h > w);
                 const isCompact = (w < 768 || h < 540);
+                const hudTop = this.getSafeHudTop();
                 const zoneW = isPortraitPhone
-                    ? Math.min(104, Math.max(76, Math.floor(w * 0.235)))
-                    : (isCompact ? Math.min(165, Math.max(102, Math.floor(w * 0.22))) : Math.min(215, Math.max(130, Math.floor(w * 0.22))));
-                const padSide = isPortraitPhone ? 6 : (isCompact ? 8 : 14);
-                const zoneTop = isPortraitPhone ? 72 : (isCompact ? 66 : 78);
-                const zoneH = h - zoneTop - (isPortraitPhone ? 16 : (isCompact ? 16 : 26));
-                const leftDropX = padSide + zoneW + (isPortraitPhone ? 18 : 28);
-                const rightDropX = w - padSide - zoneW - (isPortraitPhone ? 18 : 28);
+                    ? Math.min(96, Math.max(68, Math.floor(w * 0.22)))
+                    : (isCompact ? Math.min(155, Math.max(96, Math.floor(w * 0.21))) : Math.min(215, Math.max(130, Math.floor(w * 0.22))));
+                const padSide = isPortraitPhone ? 5 : (isCompact ? 8 : 14);
+                const zoneTop = Math.max(hudTop + 6, isPortraitPhone ? 64 : (isCompact ? 62 : 76));
+                const zoneH = Math.max(180, h - zoneTop - (isPortraitPhone ? 12 : (isCompact ? 14 : 24)));
+                const leftDropX = padSide + zoneW + (isPortraitPhone ? 14 : 24);
+                const rightDropX = w - padSide - zoneW - (isPortraitPhone ? 14 : 24);
+                const availCenterW = Math.max(88, w - (zoneW + padSide) * 2 - 16);
                 const cardW = isPortraitPhone
-                    ? Math.min(120, Math.max(92, w - (zoneW * 2) - 34))
-                    : (isCompact ? 118 : 148);
-                const cardH = isPortraitPhone ? 88 : (isCompact ? 96 : 116);
+                    ? Math.min(112, Math.max(82, availCenterW - 8))
+                    : (isCompact ? Math.min(116, availCenterW * 0.48) : 146);
+                const cardH = isPortraitPhone ? 82 : (isCompact ? 90 : 114);
 
                 return {
                     isPortraitPhone,
@@ -6681,12 +7073,13 @@
                 this.recomputeDunia3Controls();
 
                 // ---------------------------------------------------------
-                // 1. KAPSUL SOALAN TUNGGAL YANG BERSIH & RINGKAS DI ATAS
+                // 1. KAPSUL SOALAN TUNGGAL YANG BERSIH & RINGKAS DI ATAS (Sentiasa di bawah #game-hud)
                 // ---------------------------------------------------------
+                const safeTopD3 = this.getSafeHudTop();
                 ctx.save();
-                ctx.translate(cx, isCompact ? 76 : 86);
+                ctx.translate(cx, safeTopD3 + (isCompact ? 22 : 26));
 
-                const cardW = Math.min(540, w * 0.92);
+                const cardW = Math.min(540, w * 0.94);
                 const cardH = isCompact ? 42 : 48;
                 ctx.fillStyle = "rgba(10, 22, 36, 0.88)";
                 ctx.strokeStyle = st.hex;
@@ -7109,10 +7502,11 @@
                 const isCompact = (w < 768 || h < 540);
                 const portalOffset = isPortraitPhone ? 30 : (isCompact ? 42 : 54);
 
-                // 1. KAPSUL ARAHAN TUNGGAL YANG BERSIH & RINGKAS DI ATAS
+                // 1. KAPSUL ARAHAN TUNGGAL YANG BERSIH & RINGKAS DI ATAS (Sentiasa di bawah #game-hud)
+                const safeTopD2 = this.getSafeHudTop();
                 ctx.save();
-                ctx.translate(w / 2, isCompact ? 72 : 84);
-                const pillW = Math.min(520, w * 0.92);
+                ctx.translate(w / 2, safeTopD2 + (isCompact ? 18 : 22));
+                const pillW = Math.min(520, w * 0.94);
                 const pillH = isCompact ? 34 : 38;
                 ctx.fillStyle = "rgba(8, 12, 38, 0.90)";
                 ctx.strokeStyle = stage.hex;
@@ -7687,10 +8081,10 @@
                 ctx.fillText(`${Math.round(lPct * 100)}%`, rPad + zoneW / 2, lBarY + 10);
                 ctx.restore();
 
-                // 3. KAPSUL RINGKAS DI TENGAH ATAS
+                // 3. KAPSUL RINGKAS DI TENGAH ATAS (Sentiasa di bawah #game-hud tanpa bertindih)
                 this.boxBounce *= Math.pow(0.85, dtNorm);
                 ctx.save();
-                ctx.translate(w / 2, (isCompact ? 76 : 92) - this.boxBounce);
+                ctx.translate(w / 2, (layout.zoneTop + 16) - this.boxBounce);
                 ctx.fillStyle = "rgba(8, 12, 38, 0.90)";
                 ctx.strokeStyle = "#FFE600";
                 ctx.lineWidth = 3;
