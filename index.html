@@ -176,16 +176,98 @@
             border-radius: 10px; border: 2px solid var(--maze-neon); display: inline-block;
         }
 
-        /* Grid 3 Zon Maze (Pac-Man, Inky, Pinky) */
-        .worlds-grid {
-            position: absolute; top: 53%; left: 50%;
+        /* Banner Set Induksi (Mula Di Sini) Di Atas Grid 4 Zon */
+        .set-induksi-banner-wrap {
+            position: absolute;
+            top: 23.5%;
+            left: 50%;
             transform: translate(-50%, -50%);
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 22px; width: min(860px, 92vw);
+            width: min(1080px, 95vw);
+            z-index: 23;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+        }
+        .btn-set-induksi-hero {
+            pointer-events: auto;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(16, 20, 68, 0.96) 0%, rgba(35, 18, 84, 0.96) 50%, rgba(16, 20, 68, 0.96) 100%);
+            border: 4px solid var(--pac-yellow);
+            border-radius: 20px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            cursor: pointer;
+            box-shadow: 0 0 24px rgba(255, 230, 0, 0.45), inset 0 0 18px rgba(0, 229, 255, 0.25), 0 7px 0 #000;
+            transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+            color: #FFFFFF;
+            text-align: left;
+        }
+        .btn-set-induksi-hero:hover, .btn-set-induksi-hero.hovered {
+            transform: translateY(-4px) scale(1.015);
+            border-color: #FFFFFF;
+            box-shadow: 0 0 34px rgba(255, 230, 0, 0.8), 0 9px 0 #000;
+        }
+        .si-hero-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .si-hero-badge {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.55rem;
+            background: linear-gradient(180deg, #50FA7B 0%, #00C853 100%);
+            color: #041208;
+            padding: 5px 10px;
+            border-radius: 8px;
+            border: 2px solid #FFFFFF;
+            display: inline-block;
+            margin-bottom: 4px;
+            box-shadow: 0 2px 0 #000;
+        }
+        .si-hero-title {
+            font-family: 'Press Start 2P', monospace;
+            font-size: clamp(0.72rem, 1.4vw, 0.98rem);
+            color: var(--pac-yellow);
+            text-shadow: 2px 2px 0 #000;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .si-hero-desc {
+            font-size: clamp(0.76rem, 1.15vw, 0.9rem);
+            color: #E0F7FA;
+            font-weight: 700;
+        }
+        .si-hero-cta {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.62rem;
+            background: linear-gradient(180deg, #FFE600 0%, #FF9100 100%);
+            color: #070818;
+            padding: 10px 16px;
+            border-radius: 14px;
+            border: 3px solid #FFFFFF;
+            box-shadow: 0 4px 0 #000;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        /* Grid 4 Zon Maze (Pac-Man, Inky, Pinky, Clyde Apresiasi) */
+        .worlds-grid {
+            position: absolute; top: 58.5%; left: 50%;
+            transform: translate(-50%, -50%);
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 16px; width: min(1080px, 95vw);
             pointer-events: none; z-index: 22;
         }
-        @media (max-width: 780px) {
-            .worlds-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; top: 54%; }
+        @media (max-width: 900px) {
+            .set-induksi-banner-wrap { top: 21.5%; width: min(680px, 94vw); }
+            .btn-set-induksi-hero { padding: 8px 14px; }
+            .worlds-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; top: 58%; width: min(680px, 94vw); }
         }
         .btn-floating-character {
             position: relative;
@@ -236,14 +318,29 @@
         }
 
         /* =========================================================
-           3 STRUKTUR REKA BENTUK UNIK PAC-MAN ARCADE (ZON 1, 2, 3)
+           SEMUA ZON (SET INDUKSI, ZON 1, ZON 2, ZON 3, APRESIASI) DALAM SKRIN PENUH (100vw x 100dvh)
            ========================================================= */
         .world-scene {
-            position: absolute; top: 44%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: min(940px, 95vw); height: min(510px, 74vh);
-            display: none; flex-direction: column; justify-content: space-between;
+            position: fixed;
+            inset: 0;
+            top: 0;
+            left: 0;
+            transform: none;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            padding: max(54px, calc(env(safe-area-inset-top, 10px) + 46px)) max(20px, env(safe-area-inset-right, 16px)) max(68px, calc(env(safe-area-inset-bottom, 10px) + 56px)) max(20px, env(safe-area-inset-left, 16px));
+            background: radial-gradient(ellipse at 50% 40%, rgba(14, 20, 68, 0.88) 0%, rgba(5, 7, 26, 0.94) 100%);
+            border: 4px solid var(--maze-neon);
+            box-shadow: inset 0 0 24px rgba(33, 33, 222, 0.55);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
             pointer-events: auto;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .world-scene.active-scene { display: flex; }
 
@@ -776,13 +873,13 @@
                 padding: 9px 18px; min-width: 260px;
             }
             .worlds-grid {
-                width: 94vw; gap: 14px; top: 53%;
+                width: 94vw; gap: 14px; top: 58%;
             }
             .char-emblem-wrap {
                 width: 82px; height: 82px;
             }
             .world-scene {
-                top: 48%; width: 96vw; height: min(500px, 79dvh);
+                top: 0; left: 0; transform: none; width: 100vw; height: 100dvh;
             }
             .mario-powerup-stage, .luigi-hologram-screen, .toad-star-card {
                 grid-template-columns: 1fr 0.82fr; padding: 14px 16px; gap: 12px;
@@ -817,8 +914,14 @@
             }
             .header-banner h1 { font-size: 0.74rem; margin-bottom: 4px; }
             .header-banner p { font-size: 0.64rem; padding: 3px 8px; }
+            .set-induksi-banner-wrap { top: 20%; width: 96vw; }
+            .btn-set-induksi-hero { padding: 7px 10px; gap: 8px; border-width: 3px; border-radius: 14px; }
+            .si-hero-badge { font-size: 0.42rem; padding: 3px 6px; }
+            .si-hero-title { font-size: 0.62rem; }
+            .si-hero-desc { font-size: 0.68rem; }
+            .si-hero-cta { font-size: 0.48rem; padding: 7px 10px; border-width: 2px; }
             .worlds-grid {
-                grid-template-columns: repeat(3, 1fr); gap: 8px; width: 96vw; top: 53%;
+                grid-template-columns: repeat(2, 1fr); gap: 8px; width: 96vw; top: 58%;
             }
             .btn-floating-character {
                 padding: 8px 5px; border-width: 3px; border-radius: 16px; cursor: pointer;
@@ -829,7 +932,8 @@
             .world-border-label strong { font-size: 0.46rem; }
             .world-border-label small { font-size: 0.62rem; line-height: 1.15; }
             .world-scene {
-                top: 50%; width: 96vw; height: 82dvh;
+                top: 0; left: 0; transform: none; width: 100vw; height: 100dvh;
+                padding: max(46px, calc(env(safe-area-inset-top, 6px) + 40px)) 10px max(58px, calc(env(safe-area-inset-bottom, 6px) + 50px)) 10px;
             }
             .mario-powerup-stage, .luigi-hologram-screen, .toad-star-card {
                 grid-template-columns: 1fr; overflow-y: auto; padding: 10px 12px; gap: 8px;
@@ -886,11 +990,959 @@
             }
             .btn-floating-character:nth-child(2) { border-left-color: var(--inky-cyan); }
             .btn-floating-character:nth-child(3) { border-left-color: var(--pinky-pink); }
+            .btn-floating-character:nth-child(4) { border-left-color: var(--clyde-orange); }
             .world-tag-pill { display: none; }
-            .char-emblem-wrap { width: 54px; height: 54px; margin: 0; flex-shrink: 0; }
-            .world-border-label { flex: 1; text-align: left; padding: 6px 10px; }
-            .world-border-label strong { font-size: 0.56rem; margin-bottom: 2px; }
-            .world-border-label small { font-size: 0.74rem; }
+            .char-emblem-wrap { width: 48px; height: 48px; margin: 0; flex-shrink: 0; }
+            .world-border-label { flex: 1; text-align: left; padding: 5px 8px; }
+            .world-border-label strong { font-size: 0.52rem; margin-bottom: 2px; }
+            .world-border-label small { font-size: 0.7rem; }
+        }
+
+        /* =========================================================
+           REKA BENTUK 0 (SET INDUKSI): PAC-MAN ARTPIXEL MAZE ADVENTURE (SKRIN PENUH)
+           ========================================================= */
+        body.is-set-induksi #mascot-box {
+            display: none !important;
+        }
+        body.is-set-induksi #note-modal {
+            z-index: 48;
+        }
+        #scene-dunia-0 {
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            margin: 0 !important;
+            padding: max(46px, calc(env(safe-area-inset-top, 8px) + 40px)) 16px 14px 16px !important;
+            background: radial-gradient(ellipse at 50% 45%, #0D123B 0%, #06081E 65%, #02030A 100%);
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 48;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+        }
+        #scene-dunia-0.active-scene {
+            display: flex;
+        }
+        .z0-header {
+            width: min(1360px, 100%);
+            margin: 0 auto;
+            background: linear-gradient(180deg, rgba(16, 22, 68, 0.96) 0%, rgba(8, 11, 36, 0.96) 100%);
+            border: 3px solid var(--pac-yellow);
+            border-radius: 16px;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            box-shadow: 0 0 22px rgba(255, 230, 0, 0.35), 0 5px 0 #000;
+            flex-shrink: 0;
+        }
+        .z0-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .z0-title-group h1 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: clamp(0.75rem, 1.5vw, 1.05rem);
+            color: var(--pac-yellow);
+            margin: 0;
+            text-shadow: 2px 2px 0 #000;
+        }
+        .z0-title-group p {
+            margin: 3px 0 0;
+            font-size: 0.78rem;
+            color: var(--inky-cyan);
+            font-weight: 700;
+        }
+        .z0-hud-stats {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .z0-stat-pill {
+            background: #070A24;
+            border: 2px solid var(--maze-neon);
+            border-radius: 12px;
+            padding: 6px 10px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.56rem;
+            color: #FFFFFF;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 3px 0 #000;
+        }
+        .z0-main-layout {
+            width: min(1360px, 100%);
+            margin: auto;
+            flex: 1;
+            display: grid;
+            grid-template-columns: minmax(280px, 1fr) 360px;
+            gap: 16px;
+            align-items: center;
+            min-height: 0;
+        }
+        .z0-canvas-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            min-height: 280px;
+        }
+        #z0-maze-canvas {
+            width: min(100%, min(74dvh, 580px));
+            height: auto;
+            aspect-ratio: 1 / 1;
+            background: #040512;
+            border: 4px solid var(--maze-neon);
+            border-radius: 16px;
+            box-shadow: 0 0 28px rgba(0, 229, 255, 0.45), inset 0 0 18px rgba(33, 33, 222, 0.6), 0 8px 0 #000;
+            touch-action: none;
+            display: block;
+        }
+        .z0-element-banner {
+            position: absolute;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 25;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            width: max-content;
+            max-width: 92%;
+        }
+        .z0-element-banner.show {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+        .z0-banner-inner {
+            font-family: 'Press Start 2P', monospace;
+            font-size: clamp(0.55rem, 1.1vw, 0.74rem);
+            padding: 9px 16px;
+            border-radius: 30px;
+            border: 3px solid #FFFFFF;
+            background: rgba(8, 11, 36, 0.95);
+            color: var(--pac-yellow);
+            box-shadow: 0 0 22px rgba(255, 230, 0, 0.7), 0 5px 0 #000;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+        }
+        .z0-color-flash {
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            z-index: 15;
+        }
+        .z0-side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+        .z0-card {
+            background: linear-gradient(180deg, rgba(16, 22, 68, 0.94) 0%, rgba(8, 11, 36, 0.96) 100%);
+            border: 3px solid var(--maze-neon);
+            border-radius: 16px;
+            padding: 12px 14px;
+            box-shadow: inset 0 0 14px rgba(33, 33, 222, 0.4), 0 5px 0 #000;
+            color: #FFFFFF;
+        }
+        .z0-card h2 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.65rem;
+            color: var(--pac-yellow);
+            margin: 0 0 8px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .z0-legend-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+        }
+        .z0-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(7, 10, 32, 0.88);
+            border: 2px solid rgba(0, 229, 255, 0.35);
+            border-radius: 10px;
+            padding: 6px 8px;
+            font-size: 0.74rem;
+        }
+        .z0-legend-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1.5px solid #FFFFFF;
+        }
+        /* Kawalan Joystick Analog Maya + D-Pad 4 Arah (Untuk Telefon, iPad & Laptop) */
+        .z0-controls-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 12px;
+            padding-top: 4px;
+        }
+        .z0-joystick-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .z0-joystick-base {
+            width: 108px;
+            height: 108px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #1A2368 0%, #080C2B 100%);
+            border: 3px solid var(--maze-neon);
+            box-shadow: inset 0 0 14px rgba(0, 229, 255, 0.45), 0 5px 0 #000;
+            position: relative;
+            touch-action: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .z0-joystick-stick {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #FFF59D 0%, #FFE600 55%, #FF9100 100%);
+            border: 3px solid #FFFFFF;
+            box-shadow: 0 0 14px rgba(255, 230, 0, 0.8), 0 4px 8px rgba(0,0,0,0.7);
+            position: absolute;
+            pointer-events: none;
+            transition: transform 0.06s linear;
+        }
+        .z0-dpad-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 44px);
+            grid-template-rows: repeat(3, 40px);
+            gap: 4px;
+            align-items: center;
+            justify-items: center;
+        }
+        .z0-dpad-btn {
+            width: 44px;
+            height: 40px;
+            background: linear-gradient(180deg, #2121DE 0%, #101452 100%);
+            border: 2.5px solid var(--inky-cyan);
+            border-radius: 10px;
+            color: var(--pac-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #000;
+            touch-action: manipulation;
+            padding: 0;
+        }
+        .z0-dpad-btn:active, .z0-dpad-btn.hovered {
+            transform: translateY(2px);
+            background: var(--pac-yellow);
+            color: #070818;
+            border-color: #FFFFFF;
+        }
+        /* Modal Tamat Set Induksi */
+        .z0-finish-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 5, 18, 0.86);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 80;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .z0-finish-modal.show {
+            display: flex;
+        }
+        .z0-finish-box {
+            width: min(480px, 94vw);
+            background: linear-gradient(180deg, #151C58 0%, #090C2C 100%);
+            border: 5px solid var(--pac-yellow);
+            border-radius: 26px;
+            padding: 24px 22px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(255, 230, 0, 0.55), 0 12px 0 #000;
+            color: #FFFFFF;
+        }
+        @media (max-width: 960px) {
+            .z0-main-layout {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            #z0-maze-canvas {
+                width: min(92vw, 430px);
+            }
+            .z0-legend-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* =========================================================
+           REKA BENTUK 4 (CLYDE): APRESIASI — KAMERA AR SKRIN PENUH & TIRAI PENUH
+           ========================================================= */
+        body.is-theatre-z4 #mascot-box {
+            display: none !important;
+        }
+        body.is-theatre-z4 #note-modal {
+            z-index: 48;
+        }
+        #scene-dunia-4 {
+            position: fixed !important;
+            inset: 0 !important;
+            top: 0 !important;
+            left: 0 !important;
+            transform: none !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            max-width: none !important;
+            max-height: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            overflow: hidden;
+            z-index: 48;
+        }
+        /* Pentas Utama Skrin Penuh (100vw x 100dvh — 100% Lutsinar Apabila Tirai Dibuka Supaya Wajah Murid & Karya Seni Jelas Di Kamera!) */
+        .z4-stage {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            background: transparent !important;
+            box-shadow: inset 0 0 0 5px var(--pac-yellow);
+            display: flex;
+            flex-direction: column;
+        }
+        @keyframes z0ShakeAnim {
+            0%, 100% { transform: translate(0, 0); }
+            20% { transform: translate(-7px, 5px); }
+            40% { transform: translate(7px, -5px); }
+            60% { transform: translate(-5px, -4px); }
+            80% { transform: translate(5px, 4px); }
+        }
+        .z0-shake-active {
+            animation: z0ShakeAnim 0.42s ease;
+        }
+        .z0-legend-item.discovered {
+            border-color: #50FA7B !important;
+            background: rgba(16, 48, 40, 0.92) !important;
+            box-shadow: 0 0 12px rgba(80, 250, 123, 0.45);
+        }
+        .z0-life-svg {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+        }
+        .z4-stage.open {
+            background: transparent !important;
+            box-shadow: inset 0 0 0 5px var(--pac-yellow) !important;
+        }
+        .z4-stage.open::after {
+            display: none !important;
+        }
+        .z4-stage.open .z4-spotlight {
+            display: none !important;
+        }
+        .z4-stage.open #z4-child {
+            display: none !important;
+        }
+        /* Flash Kamera Semasa Ambil Gambar Karya Seni */
+        #z4-shutter-flash {
+            position: fixed;
+            inset: 0;
+            background: #FFFFFF;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 95;
+            transition: opacity 0.28s ease;
+        }
+        #z4-shutter-flash.flash-now {
+            opacity: 0.92;
+        }
+        /* Lencana Kamera Pentas (Lutsinar & Tidak Menghalang Wajah Murid) */
+        .z4-cam-stage-frame {
+            display: none;
+            width: auto;
+            max-width: 92%;
+            border: 2px solid rgba(255, 230, 0, 0.85);
+            border-radius: 30px;
+            background: rgba(10, 6, 24, 0.55);
+            padding: 6px 14px;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: auto;
+        }
+        .z4-stage.open .z4-cam-stage-frame {
+            display: inline-flex;
+        }
+        .z4-Main-drawer-collapsed .z4-right-drawer {
+            display: none !important;
+        }
+        .z4-Main-drawer-collapsed.z4-main-grid {
+            grid-template-columns: 1fr !important;
+        }
+        /* Lantai Pentas Kayu / Neon Perspektif di Bahagian Bawah */
+        .z4-stage::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 18vh;
+            background:
+                linear-gradient(180deg, rgba(255, 145, 0, 0.18) 0%, rgba(45, 16, 38, 0.85) 35%, #120612 100%);
+            border-top: 3px solid rgba(255, 230, 0, 0.45);
+            box-shadow: 0 -10px 35px rgba(255, 145, 0, 0.25);
+            pointer-events: none;
+            z-index: 1;
+        }
+        /* Cahaya Sorot (Spotlight) Skrin Penuh (Muncul Apabila Tirai Dibuka) */
+        .z4-spotlight {
+            position: absolute;
+            top: 0;
+            left: 15%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(180deg, #ffe6a088 0%, #ffe6a022 70%, transparent 100%);
+            clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%);
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .z4-stage.open .z4-spotlight {
+            opacity: 1;
+        }
+        /* Watak Murid (Child) Di Atas Pentas */
+        .z4-child {
+            width: 150px;
+            height: 190px;
+            position: relative;
+            margin: 0 auto 10px;
+            animation: z4Appear 1.5s ease;
+            flex-shrink: 0;
+        }
+        .z4-head {
+            position: absolute;
+            width: 100px;
+            height: 110px;
+            background: #f2bd91;
+            border-radius: 48% 48% 45% 45%;
+            top: 15px;
+            left: 25px;
+            border: 3px solid #8d573a;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.45);
+        }
+        .z4-hair {
+            position: absolute;
+            width: 105px;
+            height: 55px;
+            background: #382016;
+            border-radius: 50% 50% 20% 20%;
+            top: 5px;
+            left: 22px;
+            z-index: 2;
+        }
+        .z4-eye {
+            position: absolute;
+            top: 58px;
+            width: 9px;
+            height: 12px;
+            background: #291522;
+            border-radius: 50%;
+            z-index: 3;
+        }
+        .z4-eye.left-eye { left: 50px; }
+        .z4-eye.right-eye { left: 90px; }
+        .z4-smile {
+            position: absolute;
+            top: 80px;
+            left: 55px;
+            width: 30px;
+            height: 15px;
+            border-bottom: 4px solid #9b3d42;
+            border-radius: 50%;
+            z-index: 3;
+            transition: transform 0.25s ease;
+        }
+        .z4-body-child {
+            position: absolute;
+            top: 115px;
+            left: 30px;
+            width: 90px;
+            height: 75px;
+            background: #4b86c6;
+            border-radius: 25px 25px 10px 10px;
+            border: 3px solid #244c79;
+            box-shadow: inset 0 -6px 12px rgba(0,0,0,0.25);
+        }
+        .z4-arm {
+            position: absolute;
+            width: 25px;
+            height: 65px;
+            background: #f2bd91;
+            border-radius: 20px;
+            top: 120px;
+            z-index: 1;
+            border: 2px solid #8d573a;
+            transition: transform 0.35s ease;
+        }
+        .z4-arm.left-arm { left: 15px; transform: rotate(20deg); }
+        .z4-arm.right-arm { right: 15px; transform: rotate(-20deg); transform-origin: top center; }
+        .z4-child.speaking .z4-arm.right-arm {
+            animation: z4WaveArm 0.7s ease-in-out infinite alternate;
+        }
+        .z4-child.speaking .z4-smile {
+            transform: scale(1.18);
+        }
+        @keyframes z4Appear {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes z4WaveArm {
+            from { transform: rotate(-25deg); }
+            to { transform: rotate(-115deg); }
+        }
+        .z4-applause {
+            color: #ffdf88;
+            font-size: clamp(1rem, 2vw, 1.35rem);
+            font-weight: 700;
+            line-height: 1.55;
+            min-height: 68px;
+            margin: 14px auto 0;
+            padding: 12px 20px;
+            width: min(100%, 640px);
+            background: rgba(14, 7, 24, 0.92);
+            border: 3px solid var(--pac-yellow);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 0 26px rgba(255, 230, 0, 0.38), 0 6px 0 #000;
+        }
+        .z4-stage.open .z4-stage-col {
+            justify-content: flex-end;
+            min-height: 68dvh;
+            padding-bottom: 10px;
+        }
+        .z4-right-drawer {
+            transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease;
+        }
+        .z4-categories-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin: 10px 0 14px;
+        }
+        .z4-category {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            background: #593047;
+            color: #FFFFFF;
+            border: 2.5px solid #b48a42;
+            padding: 10px 16px;
+            border-radius: 22px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #000;
+            transition: transform 0.15s ease, filter 0.15s ease, background 0.15s;
+        }
+        .z4-category:hover, .z4-category.hovered {
+            filter: brightness(1.18);
+            transform: translateY(-2px) scale(1.03);
+            border-color: var(--pac-yellow);
+        }
+        .z4-category.active {
+            background: linear-gradient(180deg, #FFE600 0%, #f5d58c 100%);
+            color: #291522;
+            border-color: #FFFFFF;
+            box-shadow: 0 0 16px rgba(255, 230, 0, 0.55), 0 4px 0 #000;
+        }
+        /* Drape / Valance Tirai Atas Skrin Penuh */
+        .z4-valance {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 54px;
+            background: repeating-linear-gradient(
+                90deg,
+                #3D0012 0px,
+                #850026 22px,
+                #520017 44px
+            );
+            border-bottom: 5px solid var(--pac-yellow);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
+            z-index: 38;
+            pointer-events: none;
+        }
+        /* Tirai Kiri & Kanan Skrin Penuh (Full-Screen Curtains) */
+        .z4-curtain {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 51vw;
+            height: 100vh;
+            height: 100dvh;
+            z-index: 35;
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    #420014 0px,
+                    #9E002F 26px,
+                    #5C001B 52px,
+                    #2E000D 72px
+                );
+            border-bottom: 10px solid var(--pac-yellow);
+            box-shadow: inset 0 0 60px rgba(10, 0, 5, 0.92), 0 0 35px rgba(0, 0, 0, 0.95);
+            transition: transform 1.85s cubic-bezier(0.7, 0, 0.2, 1);
+            pointer-events: auto;
+        }
+        .z4-curtain.left {
+            left: 0;
+            border-right: 6px solid var(--pac-yellow);
+        }
+        .z4-curtain.right {
+            right: 0;
+            border-left: 6px solid var(--pac-yellow);
+        }
+        .z4-stage.open .z4-curtain.left {
+            transform: translateX(-89%);
+            pointer-events: none;
+        }
+        .z4-stage.open .z4-curtain.right {
+            transform: translateX(89%);
+            pointer-events: none;
+        }
+        /* Lencana Tengah Tirai Tertutup (Muncul Apabila Tirai Ditutup) */
+        .z4-curtain-center-badge {
+            position: fixed;
+            top: 54%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            z-index: 40;
+            background: linear-gradient(180deg, rgba(22, 8, 32, 0.96) 0%, rgba(10, 4, 18, 0.98) 100%);
+            border: 4px solid var(--pac-yellow);
+            border-radius: 26px;
+            padding: 26px 34px;
+            text-align: center;
+            box-shadow: 0 0 45px rgba(255, 230, 0, 0.55), 0 12px 0 #000;
+            transition: opacity 0.55s ease, transform 0.55s ease;
+            pointer-events: auto;
+            max-width: 90vw;
+        }
+        .z4-stage.open .z4-curtain-center-badge {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.82);
+            pointer-events: none;
+        }
+        /* Bar Kawalan Pentas & Tirai (Terapung di Atas Tirai Supaya Boleh Dibuka/Ditutup Bila-Bila Masa) */
+        .z4-theatre-header {
+            position: relative;
+            z-index: 42;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 50px auto 0;
+            width: min(1360px, 96vw);
+            padding: 10px 18px;
+            background: linear-gradient(180deg, rgba(16, 10, 32, 0.95) 0%, rgba(8, 5, 20, 0.95) 100%);
+            border: 3px solid var(--clyde-orange);
+            border-radius: 18px;
+            box-shadow: 0 0 24px rgba(255, 145, 0, 0.45), 0 6px 0 #000;
+            flex-wrap: wrap;
+        }
+        .z4-header-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .z4-header-title-wrap h1 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: clamp(0.85rem, 1.8vw, 1.25rem);
+            color: var(--pac-yellow);
+            margin: 0;
+            text-shadow: 0 0 12px rgba(255, 230, 0, 0.6), 2px 2px 0 #000;
+            letter-spacing: 2px;
+        }
+        .z4-subtitle {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.52rem;
+            color: var(--clyde-orange);
+            letter-spacing: 1.5px;
+            margin-top: 5px;
+        }
+        .z4-curtain-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        /* Kandungan Pentas Di Belakang Tirai Skrin Penuh */
+        .z4-content {
+            position: relative;
+            z-index: 15;
+            flex: 1;
+            width: 100%;
+            max-width: 1380px;
+            margin: 0 auto;
+            padding: 16px 24px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.97);
+            transition: opacity 1.1s ease, transform 1.1s ease;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+        }
+        .z4-stage.open .z4-content {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .z4-main-grid {
+            display: grid;
+            grid-template-columns: 1.08fr 0.92fr;
+            gap: 28px;
+            align-items: center;
+            width: 100%;
+            margin: auto 0;
+        }
+        .z4-stage-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+        }
+        .z4-frame {
+            background: #F4DFAE;
+            padding: 12px;
+            border: 8px ridge var(--pac-yellow);
+            border-radius: 14px;
+            width: min(100%, 480px);
+            box-shadow: 0 0 40px rgba(255, 230, 0, 0.65), 0 12px 28px rgba(0, 0, 0, 0.8);
+        }
+        .z4-frame svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+        #z4-stageTitle {
+            font-family: 'Press Start 2P', monospace;
+            font-size: clamp(0.85rem, 1.6vw, 1.2rem);
+            color: var(--pac-yellow);
+            margin: 16px 0 6px;
+            text-shadow: 0 0 14px rgba(255, 230, 0, 0.55), 2px 2px 0 #000;
+        }
+        #z4-stageText {
+            font-size: clamp(0.95rem, 1.3vw, 1.12rem);
+            font-weight: 700;
+            color: #FFE8B3;
+            margin: 0;
+            text-shadow: 1px 1px 0 #000;
+        }
+        .z4-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            border: 3px solid #FFFFFF;
+            background: linear-gradient(180deg, #FFE600 0%, #FF9100 100%);
+            color: #070818;
+            padding: 10px 18px;
+            border-radius: 18px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.6rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 0 14px rgba(255, 230, 0, 0.45), 0 5px 0 #000;
+            transition: transform 0.15s ease, filter 0.15s ease;
+        }
+        .z4-btn:hover, .z4-btn.hovered {
+            filter: brightness(1.15);
+            transform: translateY(-2px) scale(1.03);
+        }
+        .z4-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .z4-btn-secondary {
+            background: linear-gradient(180deg, #2121DE 0%, #0D1142 100%);
+            color: #FFFFFF;
+            border-color: var(--inky-cyan);
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.35), 0 5px 0 #000;
+        }
+        .z4-panel {
+            width: 100%;
+            padding: 22px 24px;
+            background: linear-gradient(180deg, rgba(24, 14, 38, 0.94) 0%, rgba(11, 7, 22, 0.96) 100%);
+            border: 3px solid var(--clyde-orange);
+            border-radius: 22px;
+            box-shadow: 0 0 28px rgba(255, 145, 0, 0.3), inset 0 0 22px rgba(255, 230, 0, 0.12), 0 8px 0 #000;
+            text-align: center;
+            color: #FFFFFF;
+        }
+        .z4-panel.hidden { display: none !important; }
+        .z4-panel h2 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: clamp(0.78rem, 1.4vw, 1.02rem);
+            color: var(--pac-yellow);
+            margin: 0 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            line-height: 1.4;
+        }
+        .z4-panel h3 {
+            font-size: 1.08rem;
+            color: #FFFFFF;
+            margin: 10px 0 12px;
+            line-height: 1.4;
+        }
+        .z4-answer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            width: 100%;
+            max-width: 650px;
+            margin: 9px auto;
+            padding: 12px 16px;
+            background: #593047;
+            color: #FFFFFF;
+            border: 2px solid #b48a42;
+            border-radius: 14px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.96rem;
+            font-weight: 700;
+            text-align: left;
+            line-height: 1.45;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #000;
+            transition: transform 0.14s ease, background 0.14s, border-color 0.14s;
+        }
+        .z4-answer:hover, .z4-answer.hovered {
+            background: #7b4565;
+            border-color: var(--pac-yellow);
+            transform: translateY(-2px);
+        }
+        .z4-answer.selected {
+            background: linear-gradient(180deg, #FFE600 0%, #FF9100 100%);
+            color: #1F0B18;
+            border-color: #FFFFFF;
+        }
+        .z4-lyric {
+            font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+            font-weight: 700;
+            color: var(--pac-yellow);
+            line-height: 1.6;
+            min-height: 105px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 6, 20, 0.9);
+            border: 2.5px dashed var(--pac-yellow);
+            border-radius: 16px;
+            padding: 16px;
+            margin: 10px 0;
+        }
+        .z4-small { color: #F5D58C; font-size: 0.88rem; margin: 6px 0; font-weight: 600; }
+        #z4-feedback {
+            color: #69FF70;
+            font-weight: 700;
+            min-height: 26px;
+            margin: 10px 0 6px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        #z4-score {
+            font-family: 'Press Start 2P', monospace;
+            color: var(--pac-yellow);
+            font-size: 0.78rem;
+            margin: 10px 0 12px;
+        }
+        .z4-audio-box {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 2px dashed rgba(255, 230, 0, 0.35);
+        }
+        .z4-svg-icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            vertical-align: middle;
+        }
+        @media (max-width: 900px) {
+            .z4-theatre-header {
+                margin-top: 46px;
+                padding: 8px 12px;
+                justify-content: center;
+            }
+            .z4-main-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .z4-content {
+                align-items: flex-start;
+                padding: 12px 14px 32px;
+            }
+            .z4-frame {
+                width: min(92%, 340px);
+                padding: 8px;
+            }
+            .z4-panel {
+                padding: 16px;
+            }
         }
 
         @media (max-height: 540px) {
@@ -899,7 +1951,7 @@
             .header-banner p { font-size: 0.62rem; padding: 2px 8px; }
             .worlds-grid { top: 56%; gap: 8px; }
             .char-emblem-wrap { width: 52px; height: 52px; margin: 2px 0 4px; }
-            .world-scene { top: 50%; height: 86dvh; }
+            .world-scene { top: 0; left: 0; transform: none; width: 100vw; height: 100dvh; }
             .q-block-3d { height: 46px; width: 74px; }
             .mario-powerup-stage, .luigi-hologram-screen, .toad-star-card { padding: 8px 12px; overflow-y: auto; }
             .visual-demo-card { min-height: 85px; padding: 6px; }
@@ -951,6 +2003,10 @@
             <div id="hand-status" class="badge-arcade">🖐️ TANGAN: 0 / 2</div>
             <button id="btn-bgm" class="badge-arcade" onclick="App.toggleBGM()">🎵 LAGU PAC-MAN: ON</button>
             <button id="btn-sound" class="badge-arcade" onclick="App.toggleMute()">🔊 SFX: ON</button>
+            <button id="btn-fullscreen" class="badge-arcade" onclick="App.toggleFullscreen()" title="Skrin Penuh">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                <span id="fullscreen-label">SKRIN PENUH</span>
+            </button>
         </div>
     </div>
 
@@ -999,8 +2055,33 @@
     <!-- UI Skrin Pilihan Modul (3 Zon Maze: Pac-Man, Inky, Pinky) -->
     <div id="main-menu" class="ui-layer" style="display: none;">
         <div class="header-banner">
-            <h1>PAC-MAN AR: SENI VISUAL</h1>
-            <p>Setiap Zon Maze Mempunyai Reka Bentuk Interaktif Mengikut Wataknya!</p>
+            <h1>ARTPIXEL ADVENTURE</h1>
+            <p>Terokai Set Induksi, Zon 1–3 &amp; Pentas Apresiasi Dalam Skrin Penuh!</p>
+        </div>
+
+        <!-- Banner Set Induksi (Mula Di Sini) Di Atas 4 Zon Utama (100% Ikon SVG Tanpa Emoji) -->
+        <div class="set-induksi-banner-wrap">
+            <button class="btn-set-induksi-hero" onclick="App.openModuleNote(0)">
+                <div class="si-hero-left">
+                    <svg viewBox="0 0 72 72" width="58" height="58" style="flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(255,230,0,0.65));">
+                        <rect x="3" y="3" width="66" height="66" rx="14" fill="#0B1038" stroke="#00E5FF" stroke-width="3.5"/>
+                        <path d="M26 36 L44 23 A20 20 0 1 0 44 49 Z" fill="#FFE600" stroke="#000" stroke-width="2.5" stroke-linejoin="round"/>
+                        <circle cx="28" cy="25" r="3" fill="#000"/>
+                        <circle cx="52" cy="26" r="5" fill="#FF1744" stroke="#FFF" stroke-width="1.5"/>
+                        <polygon points="54,48 61,58 47,58" fill="#50FA7B" stroke="#FFF" stroke-width="1.5"/>
+                        <path d="M12 58 Q20 50 28 58 T42 58" fill="none" stroke="#B388FF" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                    <div>
+                        <span class="si-hero-badge">MULA DI SINI • SET INDUKSI</span>
+                        <strong class="si-hero-title">SET INDUKSI: PAC-MAN ARTPIXEL MAZE</strong>
+                        <span class="si-hero-desc">Pengenalan Unsur Seni Visual (Garisan, Warna, Rupa, Bentuk &amp; Jalinan)</span>
+                    </div>
+                </div>
+                <span class="si-hero-cta">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    MULA TEROKA
+                </span>
+            </button>
         </div>
 
         <div class="worlds-grid">
@@ -1064,7 +2145,27 @@
                 </div>
             </button>
 
-
+            <!-- Zon 4: CLYDE (APRESIASI - PENTAS KAMERA AR & APRESIASI MURID) -->
+            <button class="btn-floating-character" onclick="App.openModuleNote(4)">
+                <span class="world-tag-pill" style="background: #E65100; color: #FFF;">APRESIASI • CLYDE</span>
+                <div class="char-emblem-wrap" style="border-color: var(--clyde-orange);">
+                    <img id="char-img-4" class="character-png" alt="Clyde">
+                    <svg id="char-svg-4" viewBox="0 0 80 80" width="76" height="76">
+                        <!-- Tirai Pentas & Hantu Clyde (Orange Arcade Ghost) -->
+                        <path d="M8 10 L24 10 L18 36 L8 30 Z" fill="#9B002E" stroke="#FFE600" stroke-width="2"/>
+                        <path d="M72 10 L56 10 L62 36 L72 30 Z" fill="#9B002E" stroke="#FFE600" stroke-width="2"/>
+                        <path d="M20 44 C20 18, 60 18, 60 44 L60 66 L52 58 L45 66 L40 58 L35 66 L28 58 L20 66 Z" fill="#FF9100" stroke="#000000" stroke-width="3.5" stroke-linejoin="round"/>
+                        <ellipse cx="33" cy="38" rx="6" ry="7.5" fill="#FFFFFF" stroke="#000" stroke-width="2"/>
+                        <ellipse cx="48" cy="38" rx="6" ry="7.5" fill="#FFFFFF" stroke="#000" stroke-width="2"/>
+                        <circle cx="35" cy="38" r="3.2" fill="#2121DE"/>
+                        <circle cx="50" cy="38" r="3.2" fill="#2121DE"/>
+                    </svg>
+                </div>
+                <div class="world-border-label">
+                    <strong>APRESIASI</strong>
+                    <small style="color: var(--clyde-orange);">Pentas Kamera &amp; Karya Murid</small>
+                </div>
+            </button>
         </div>
     </div>
 
@@ -1072,6 +2173,200 @@
          LAPISAN NOTA: 3 REKA BENTUK BERBEZA MENGIKUT WATAK PAC-MAN
          ========================================================= -->
     <div id="note-modal" class="ui-layer" style="display: none;">
+
+        <!-- 0. REKA BENTUK SET INDUKSI: PAC-MAN ARTPIXEL MAZE ADVENTURE (SKRIN PENUH, JOYSTICK + D-PAD + TANGAN AR, 100% IKON SVG TANPA EMOJI) -->
+        <div id="scene-dunia-0" class="world-scene">
+            <header class="z0-header">
+                <div class="z0-title-group">
+                    <svg viewBox="0 0 44 44" width="38" height="38" style="flex-shrink: 0;">
+                        <rect x="2" y="2" width="40" height="40" rx="10" fill="#10164A" stroke="#FFE600" stroke-width="2.5"/>
+                        <path d="M18 22 L31 13 A14 14 0 1 0 31 31 Z" fill="#FFE600" stroke="#000" stroke-width="2" stroke-linejoin="round"/>
+                        <circle cx="19" cy="15" r="2.2" fill="#000"/>
+                        <circle cx="35" cy="22" r="3.5" fill="#FF1744" stroke="#FFF" stroke-width="1.2"/>
+                    </svg>
+                    <div>
+                        <h1>SET INDUKSI: PAC-MAN ARTPIXEL</h1>
+                        <p>Pengenalan Unsur Seni Visual (Garisan, Warna, Rupa, Bentuk &amp; Jalinan)</p>
+                    </div>
+                </div>
+
+                <div class="z0-hud-stats">
+                    <div class="z0-stat-pill" title="Nyawa Pac-Man">
+                        <span>NYAWA:</span>
+                        <span id="z0-lives" style="display:inline-flex; gap:4px; align-items:center;"></span>
+                    </div>
+                    <div class="z0-stat-pill" title="Token Unsur Seni Ditemui">
+                        <span style="color: var(--pac-yellow);">TOKEN SENI:</span>
+                        <span id="z0-tokens-count" style="color: #50FA7B;">0 / 16</span>
+                    </div>
+                    <div class="z0-stat-pill" title="Pelet Pac-Dots Dimakan">
+                        <span style="color: #FFB8AE;">PELET:</span>
+                        <span id="z0-pellets-count" style="color: #FFFFFF;">0 / 68</span>
+                    </div>
+                    <div class="z0-stat-pill" title="Masa Permainan & Penarafan 3 Bintang">
+                        <span style="color: var(--inky-cyan);">MASA:</span>
+                        <span id="z0-timer-val" style="color: #FFFFFF;">00:00</span>
+                        <span id="z0-stars-hud" style="display:inline-flex; gap:2px; align-items:center; margin-left:4px;"></span>
+                    </div>
+                    <div class="z0-stat-pill">
+                        <span style="color: var(--inky-cyan);">MARKAH:</span>
+                        <span id="z0-score-val" style="color: var(--pac-yellow);">0</span>
+                    </div>
+                    <button class="z4-btn z4-btn-secondary" onclick="SetInduksiMazeZ0.resetGame()" style="padding: 7px 12px; font-size: 0.52rem;">
+                        <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                        MULA SEMULA
+                    </button>
+                    <button class="btn-mario btn-blue" onclick="App.showMenu()" style="padding: 7px 12px; font-size: 0.52rem;">
+                        <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg>
+                        MENU UTAMA
+                    </button>
+                </div>
+            </header>
+
+            <div class="z0-main-layout">
+                <!-- Kiri: Kanvas Maze Pac-Man 600x600 -->
+                <div id="z0-canvas-shell" class="z0-canvas-wrap">
+                    <canvas id="z0-maze-canvas" width="600" height="600"></canvas>
+
+                    <div id="z0-element-banner" class="z0-element-banner">
+                        <div id="z0-banner-content" class="z0-banner-inner">
+                            <span id="z0-banner-svg" style="display:inline-flex; align-items:center;"></span>
+                            <div style="text-align:left;">
+                                <strong id="z0-banner-title" style="display:block; font-size:0.64rem; margin-bottom:2px;">-</strong>
+                                <span id="z0-banner-desc" style="display:block; font-family:'Fredoka',sans-serif; font-size:0.78rem; color:#E0F7FA; font-weight:700;">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="z0-color-flash" class="z0-color-flash"></div>
+                </div>
+
+                <!-- Kanan: Kawalan Joystick/D-Pad & Panduan Unsur Seni -->
+                <div class="z0-side-panel">
+                    <!-- Kad Kawalan Pelbagai Peranti (Telefon, iPad, Laptop & Tangan AR) -->
+                    <div class="z0-card">
+                        <h2>
+                            <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="#FFE600" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="6"/><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><circle cx="15" cy="11" r="1" fill="#FFE600"/><circle cx="18" cy="13" r="1" fill="#FF1744"/></svg>
+                            KAWALAN PAC-MAN (JOYSTICK / ANAK PANAH)
+                        </h2>
+                        <p style="font-size: 0.78rem; color: #E0F7FA; margin: 0 0 8px; line-height: 1.4;">
+                            Pandu <b>Pac-Man</b> dari <b style="color:#50FA7B;">MULA</b> ke <b style="color:#FF66CC;">TAMAT</b>! Kumpulkan ke semua <b>16 Token Unsur Seni</b> untuk membuka pintu TAMAT.
+                        </p>
+
+                        <div class="z0-controls-row">
+                            <!-- Joystick Analog Maya -->
+                            <div class="z0-joystick-wrap">
+                                <div id="z0-joystick-base" class="z0-joystick-base" title="Tarik Joystick untuk menggerakkan Pac-Man">
+                                    <div id="z0-joystick-stick" class="z0-joystick-stick"></div>
+                                </div>
+                                <span style="font-family:'Press Start 2P'; font-size:0.45rem; color:var(--inky-cyan);">JOYSTICK SENTUH</span>
+                            </div>
+
+                            <!-- Butang Anak Panah D-Pad -->
+                            <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+                                <div class="z0-dpad-grid">
+                                    <div></div>
+                                    <button id="z0-btn-up" class="z0-dpad-btn" onclick="SetInduksiMazeZ0.setInputDir(0,-1)" aria-label="Atas">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon points="12 5 20 17 4 17"/></svg>
+                                    </button>
+                                    <div></div>
+                                    <button id="z0-btn-left" class="z0-dpad-btn" onclick="SetInduksiMazeZ0.setInputDir(-1,0)" aria-label="Kiri">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon points="5 12 17 4 17 20"/></svg>
+                                    </button>
+                                    <button id="z0-btn-down" class="z0-dpad-btn" onclick="SetInduksiMazeZ0.setInputDir(0,1)" aria-label="Bawah">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon points="12 19 4 7 20 7"/></svg>
+                                    </button>
+                                    <button id="z0-btn-right" class="z0-dpad-btn" onclick="SetInduksiMazeZ0.setInputDir(1,0)" aria-label="Kanan">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon points="19 12 7 20 7 4"/></svg>
+                                    </button>
+                                </div>
+                                <span style="font-family:'Press Start 2P'; font-size:0.45rem; color:var(--pac-yellow);">ANAK PANAH / WASD</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kad Panduan Unsur Seni Terokai -->
+                    <div class="z0-card">
+                        <h2>
+                            <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="#FFE600" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0 0 20 2 2 0 0 0 2-2v-1a2 2 0 0 1 2-2h2a4 4 0 0 0 4-4c0-5.52-4.48-11-10-11z"/><circle cx="7.5" cy="10.5" r="1.5" fill="#FF1744"/><circle cx="12" cy="7.5" r="1.5" fill="#00E5FF"/><circle cx="16.5" cy="10.5" r="1.5" fill="#50FA7B"/></svg>
+                            UNSUR SENI TEROKAI
+                        </h2>
+                        <div class="z0-legend-grid">
+                            <div id="z0-leg-garisan" class="z0-legend-item">
+                                <div class="z0-legend-icon" style="background:#6B21A8;">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#FFF" stroke-width="2.5" stroke-linecap="round"><path d="M2 12 Q7 4 12 12 T22 12"/></svg>
+                                </div>
+                                <div>
+                                    <strong style="color:#D8B4FE; display:block;">1. Garisan</strong>
+                                    <span style="font-size:0.66rem; color:#CBD5E1;">Zig-zag, Beralun, Berpusing</span>
+                                </div>
+                            </div>
+                            <div id="z0-leg-warna" class="z0-legend-item">
+                                <div class="z0-legend-icon" style="background:linear-gradient(135deg,#EF4444,#EAB308,#3B82F6);">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="#FFF"><circle cx="12" cy="12" r="6"/></svg>
+                                </div>
+                                <div>
+                                    <strong style="color:#F9A8D4; display:block;">2. Warna</strong>
+                                    <span style="font-size:0.66rem; color:#CBD5E1;">Merah, Kuning, Hijau, Biru</span>
+                                </div>
+                            </div>
+                            <div id="z0-leg-bentuk" class="z0-legend-item">
+                                <div class="z0-legend-icon" style="background:#059669;">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFF" stroke-width="2.2"><polygon points="12 3 21 19 3 19"/></svg>
+                                </div>
+                                <div>
+                                    <strong style="color:#6EE7B7; display:block;">3. Rupa &amp; Bentuk</strong>
+                                    <span style="font-size:0.66rem; color:#CBD5E1;">Bulatan, Segi Tiga, Kubus, Sfera</span>
+                                </div>
+                            </div>
+                            <div id="z0-leg-jalinan" class="z0-legend-item">
+                                <div class="z0-legend-icon" style="background:#D97706;">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FFF" stroke-width="2.2"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="9" y="14" width="6" height="6"/></svg>
+                                </div>
+                                <div>
+                                    <strong style="color:#FCD34D; display:block;">4. Jalinan</strong>
+                                    <span style="font-size:0.66rem; color:#CBD5E1;">Jalinan Kasar &amp; Lembut</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Kemenangan Set Induksi -->
+            <div id="z0-finish-modal" class="z0-finish-modal">
+                <div class="z0-finish-box">
+                    <div style="width:74px; height:74px; margin:0 auto 10px; border-radius:20px; background:linear-gradient(135deg,#FFE600,#FF9100); border:3px solid #FFF; display:flex; align-items:center; justify-content:center; box-shadow:0 0 24px rgba(255,230,0,0.6);">
+                        <svg viewBox="0 0 24 24" width="42" height="42" fill="#180800" stroke="#180800" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                    </div>
+                    <div id="z0-finish-stars" style="display:flex; justify-content:center; gap:8px; margin-bottom:10px;"></div>
+                    <h2 style="font-family:'Press Start 2P'; font-size:1.15rem; color:var(--pac-yellow); margin:0 0 10px; text-shadow:2px 2px 0 #000;">
+                        TAHNIAH!
+                    </h2>
+                    <div style="background:rgba(33,33,222,0.35); border:2px solid var(--inky-cyan); border-radius:14px; padding:12px; margin-bottom:10px; font-size:1.05rem; font-weight:700; color:#FFF;">
+                        “Tahniah! Jom Terokai Dunia Seni!”
+                    </div>
+                    <p id="z0-finish-stats" style="font-family:'Press Start 2P'; font-size:0.58rem; color:var(--pac-yellow); margin:0 0 10px; line-height:1.6;"></p>
+                    <p style="font-size:0.86rem; color:#B3E5FC; margin:0 0 16px; line-height:1.45;">
+                        Anda telah berjaya menerokai ke semua 16 Token Unsur Seni (Garisan, Warna, Rupa, Bentuk &amp; Jalinan) bersama Pac-Man!
+                    </p>
+                    <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+                        <button class="z4-btn" onclick="App.openModuleNote(1)">
+                            <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                            TERUS KE ZON 1
+                        </button>
+                        <button class="z4-btn z4-btn-secondary" onclick="SetInduksiMazeZ0.resetGame()">
+                            <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                            MAIN SEMULA
+                        </button>
+                        <button class="btn-mario btn-blue" onclick="App.showMenu()">
+                            <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg>
+                            MENU UTAMA
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- 1. REKA BENTUK ZON 1 (PAC-MAN): KOTAK POWER PELLET [●] 3D -->
         <div id="scene-dunia-1" class="world-scene">
@@ -1196,6 +2491,185 @@
             </div>
         </div>
 
+        <!-- 4. REKA BENTUK APRESIASI (CLYDE): PENTAS APRESIASI MURID & PAMERAN KARYA KAMERA AR SKRIN PENUH (100% IKON SVG TANPA EMOJI) -->
+        <div id="scene-dunia-4" class="world-scene">
+            <div id="z4-shutter-flash"></div>
+            <div class="z4-stage" id="z4-stage">
+                <!-- Drape Atas & Cahaya Sorot Pentas Skrin Penuh -->
+                <div class="z4-valance"></div>
+                <div class="z4-spotlight"></div>
+
+                <!-- Tirai Kiri & Kanan Skrin Penuh (100vw x 100dvh) -->
+                <div class="z4-curtain left"></div>
+                <div class="z4-curtain right"></div>
+
+                <!-- Lencana Tengah Apabila Tirai Skrin Penuh Ditutup -->
+                <div class="z4-curtain-center-badge">
+                    <svg viewBox="0 0 64 64" width="62" height="62" style="margin-bottom: 10px; filter: drop-shadow(0 0 10px rgba(255,230,0,0.6));">
+                        <rect x="4" y="8" width="56" height="48" rx="10" fill="#161E5C" stroke="#FFE600" stroke-width="3.5"/>
+                        <path d="M8 12 L26 12 L19 48 L8 42 Z" fill="#FF1744"/>
+                        <path d="M56 12 L38 12 L45 48 L56 42 Z" fill="#FF1744"/>
+                        <circle cx="32" cy="34" r="10" fill="#FFE600"/>
+                    </svg>
+                    <h2 style="font-family: 'Press Start 2P', monospace; font-size: clamp(0.9rem, 2vw, 1.35rem); color: var(--pac-yellow); margin: 0 0 8px; text-shadow: 2px 2px 0 #000;">
+                        PENTAS APRESIASI MURID
+                    </h2>
+                    <p style="color: #FFE8B3; font-weight: 700; font-size: 0.98rem; margin: 0 0 16px;">
+                        Buka tirai pentas untuk mempamerkan karya seni anda secara langsung melalui kamera dalam skrin penuh!
+                    </p>
+                    <button class="z4-btn" onclick="ArtTheatreZ4.openStage()" style="font-size: 0.72rem; padding: 13px 26px;">
+                        <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18v16H3z"/><path d="M9 4L4 16"/><path d="M15 4l5 12"/></svg>
+                        BUKA TIRAI
+                    </button>
+                </div>
+
+                <!-- Bar Kawalan Pentas & Tirai (Sentiasa Di Atas Tirai Supaya Boleh Buka/Tutup Bila-Bila Masa) -->
+                <header class="z4-theatre-header">
+                    <div class="z4-header-title-wrap">
+                        <!-- Ikon SVG Tirai & Pentas Seni -->
+                        <svg viewBox="0 0 36 36" width="34" height="34" aria-hidden="true">
+                            <rect x="2" y="4" width="32" height="28" rx="6" fill="#161E5C" stroke="#FFE600" stroke-width="2.5"/>
+                            <path d="M4 6 L15 6 L11 26 L4 22 Z" fill="#FF1744"/>
+                            <path d="M32 6 L21 6 L25 26 L32 22 Z" fill="#FF1744"/>
+                            <circle cx="18" cy="19" r="6" fill="#FFE600"/>
+                            <path d="M18 19 L24 15 A6 6 0 1 0 24 23 Z" fill="#FFE600"/>
+                        </svg>
+                        <div style="text-align: left;">
+                            <h1>APRESIASI</h1>
+                            <div class="z4-subtitle">PENTAS APRESIASI MURID &amp; KAMERA KARYA SENI</div>
+                        </div>
+                    </div>
+
+                    <div class="z4-curtain-controls">
+                        <button class="z4-btn" onclick="ArtTheatreZ4.openStage()">
+                            <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18v16H3z"/><path d="M9 4L4 16"/><path d="M15 4l5 12"/></svg>
+                            BUKA TIRAI
+                        </button>
+                        <button class="z4-btn z4-btn-secondary" onclick="ArtTheatreZ4.closeStage()">
+                            <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                            TUTUP TIRAI
+                        </button>
+                        <button class="z4-btn" onclick="ArtTheatreZ4.capturePhoto()" title="Ambil Gambar Bersama Karya Seni">
+                            <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                            AMBIL GAMBAR
+                        </button>
+                        <button class="z4-btn z4-btn-secondary" id="z4-drawerBtn" onclick="ArtTheatreZ4.toggleDrawer()">
+                            <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+                            <span id="z4-drawerBtnText">LIPAT PANEL</span>
+                        </button>
+                        <button class="btn-mario btn-blue" onclick="App.showMenu()">
+                            <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg>
+                            MENU UTAMA
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Kandungan Pentas Di Belakang Tirai Skrin Penuh -->
+                <div class="z4-content">
+                    <div class="z4-main-grid" id="z4-main-grid">
+                        <!-- KOLUM KIRI: PAMERAN KARYA KAMERA LANGSUNG / WATAK MURID & UCAPAN APRESIASI -->
+                        <div class="z4-stage-col">
+                            <!-- Bingkai Panduan Kamera (Muncul Apabila Kamera Aktif) -->
+                            <div class="z4-cam-stage-frame">
+                                <span id="z4-camStatusBadge" style="font-family:'Press Start 2P'; font-size:0.52rem; background:rgba(255,230,0,0.92); color:#120612; padding:5px 10px; border-radius:8px; border:2px solid #FFF;">
+                                    KAMERA PENTAS LANGSUNG AKTIF
+                                </span>
+                                <span style="font-size:0.86rem; font-weight:700; color:#FFF; text-shadow:1px 1px 3px #000;">
+                                    Tunjukkan diri anda &amp; hasil karya seni di hadapan kamera!
+                                </span>
+                            </div>
+
+                            <!-- Watak Murid (Fallback Automatik Jika Tiada Kamera) -->
+                            <div class="z4-child" id="z4-child">
+                                <div class="z4-hair"></div>
+                                <div class="z4-head"></div>
+                                <div class="z4-eye left-eye"></div>
+                                <div class="z4-eye right-eye"></div>
+                                <div class="z4-smile"></div>
+                                <div class="z4-arm left-arm"></div>
+                                <div class="z4-arm right-arm"></div>
+                                <div class="z4-body-child"></div>
+                            </div>
+                            <h2 id="z4-stageTitle">SELAMAT DATANG!</h2>
+                            <p id="z4-stageText">Mari kita hargai karya seni rakan kita!</p>
+                            <div id="z4-speech" class="z4-applause">Pilih ayat apresiasi di sebelah untuk disampaikan di pentas.</div>
+                        </div>
+
+                        <!-- KOLUM KANAN: PANEL PILIHAN APRESIASI & PENUTUP -->
+                        <div class="z4-right-drawer" style="width: 100%;">
+                            <!-- SEKSYEN 1: JOM BERIKAN APRESIASI -->
+                            <section class="z4-panel" id="z4-appreciation">
+                                <h2>
+                                    <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="#FF4081" stroke="#FFE600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                    JOM BERIKAN APRESIASI!
+                                </h2>
+                                <p class="z4-small">Pilih ayat yang ingin kamu sampaikan kepada rakan.</p>
+
+                                <div class="z4-categories-row">
+                                    <button class="z4-category active" data-cat="warna" onclick="ArtTheatreZ4.showCategory('warna', this)">
+                                        <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0 0 20 2 2 0 0 0 2-2v-1a2 2 0 0 1 2-2h2a4 4 0 0 0 4-4c0-5.52-4.48-11-10-11z"/><circle cx="7.5" cy="10.5" r="1.5" fill="#FF1744"/><circle cx="12" cy="7.5" r="1.5" fill="#00E5FF"/><circle cx="16.5" cy="10.5" r="1.5" fill="#50FA7B"/></svg>
+                                        Warna
+                                    </button>
+                                    <button class="z4-category" data-cat="garisan" onclick="ArtTheatreZ4.showCategory('garisan', this)">
+                                        <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                                        Garisan &amp; Rupa
+                                    </button>
+                                    <button class="z4-category" data-cat="kreativiti" onclick="ArtTheatreZ4.showCategory('kreativiti', this)">
+                                        <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                        Kreativiti
+                                    </button>
+                                    <button class="z4-category" data-cat="usaha" onclick="ArtTheatreZ4.showCategory('usaha', this)">
+                                        <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                        Usaha Rakan
+                                    </button>
+                                </div>
+
+                                <div id="z4-answers"></div>
+
+                                <p class="z4-small">Tekan atau cubit (AR) ayat pilihan untuk menyampaikannya di pentas.</p>
+
+                                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+                                    <button class="z4-btn z4-btn-secondary" onclick="ArtTheatreZ4.clearSpeech()">
+                                        <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                                        PILIH AYAT LAIN
+                                    </button>
+                                    <button class="z4-btn" onclick="ArtTheatreZ4.finish()">
+                                        <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                        TAMAT PERSEMBAHAN
+                                    </button>
+                                </div>
+                            </section>
+
+                            <!-- SEKSYEN 2: PENUTUP & PENGHARGAAN SENI -->
+                            <section class="z4-panel hidden" id="z4-ending">
+                                <h2>
+                                    <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="#FFE600" stroke="#000" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    SYABAS!
+                                </h2>
+                                <p style="margin: 6px 0 10px;">Ayat Apresiasi Pilihan Kamu:</p>
+                                <div id="z4-ending-chosen-quote" style="background: rgba(10, 6, 22, 0.92); border: 3px solid var(--pac-yellow); border-radius: 16px; padding: 14px 18px; margin: 10px auto 14px; color: var(--pac-yellow); font-size: clamp(1.02rem, 1.8vw, 1.28rem); font-weight: 700; line-height: 1.5; box-shadow: 0 0 20px rgba(255, 230, 0, 0.35);">
+                                    “Saya suka penggunaan warna yang menarik dalam karya ini.”
+                                </div>
+                                <p style="color: #f5d58c; font-weight: 700; font-size: 0.96rem; margin: 10px 0;">
+                                    Terima kasih kerana menghargai karya seni rakan-rakan. Setiap karya mempunyai keistimewaan tersendiri!
+                                </p>
+                                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 14px;">
+                                    <button class="z4-btn" onclick="ArtTheatreZ4.restart()">
+                                        <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                                        ULANG SEMULA
+                                    </button>
+                                    <button class="z4-btn z4-btn-secondary" onclick="App.showMenu()">
+                                        <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg>
+                                        MENU UTAMA
+                                    </button>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- UI Skrin Keputusan (Menang atau Kalah Nyawa Habis) -->
@@ -1228,6 +2702,13 @@
             </p>
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
                 <button class="btn-mario btn-green" onclick="App.startGame(App.activeModule)">🔄 Main Semula</button>
+                <button class="btn-mario btn-yellow" onclick="App.openModuleNote(4)" style="display:inline-flex; align-items:center; gap:8px;">
+                    <svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:middle;">
+                        <path d="M2 4 C2 2 10 2 10 4 L10 12 C10 16 6 19 6 19 C6 19 2 16 2 12 Z" fill="#120824" stroke="#FF8800" stroke-width="1.8"/>
+                        <path d="M14 6 C14 4 22 4 22 6 L22 14 C22 18 18 21 18 21 C18 21 14 18 14 14 Z" fill="#120824" stroke="#00FFFF" stroke-width="1.8"/>
+                    </svg>
+                    Apresiasi (Pentas Seni)
+                </button>
                 <button class="btn-mario btn-blue" onclick="App.showMenu()">🏠 Ke Menu Utama</button>
             </div>
         </div>
@@ -1556,6 +3037,41 @@
                     });
                 } else {
                     this.playFilteredTone(440, 0.14, 'triangle', 0.12, 0, 880);
+                }
+            }
+
+            static playScore(isBonus = false) {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                if (isBonus) {
+                    this.playFilteredTone(587.33, 0.09, 'triangle', 0.14, 0, 880);
+                    this.playFilteredTone(880.00, 0.16, 'triangle', 0.14, 0.07, 1174.66);
+                } else {
+                    this.playCoin();
+                }
+            }
+
+            static playElementSound(tile) {
+                if (this.muted) return;
+                this.init();
+                if (!this.ctx) return;
+                if (tile === 10) {
+                    this.playFilteredTone(523.25, 0.09, 'square', 0.11, 0, 783.99);
+                } else if (tile === 11) {
+                    this.playFilteredTone(330.00, 0.22, 'sine', 0.13, 0, 440.00);
+                } else if (tile === 12) {
+                    this.playFilteredTone(220.00, 0.20, 'sawtooth', 0.10, 0, 620.00);
+                } else if (tile >= 20 && tile <= 23) {
+                    const freqs = { 20: 400, 21: 550, 22: 650, 23: 800 };
+                    this.playFilteredTone(freqs[tile] || 500, 0.18, 'triangle', 0.14);
+                } else if (tile >= 30 && tile <= 34) {
+                    this.playFilteredTone(880.00, 0.10, 'sine', 0.12);
+                    this.playFilteredTone(1318.51, 0.18, 'sine', 0.12, 0.08);
+                } else if (tile === 40) {
+                    this.playFilteredTone(115.00, 0.15, 'sawtooth', 0.14, 0, 62.00);
+                } else if (tile === 41) {
+                    this.playFilteredTone(659.25, 0.26, 'sine', 0.11, 0, 880.00);
                 }
             }
 
@@ -2377,6 +3893,7 @@
                     this.video.srcObject = stream;
                     this.video.setAttribute("playsinline", "");
                     this.video.muted = true;
+                    document.body.classList.add('has-webcam');
                     await this.video.play().catch(() => {});
 
                     const startAppLoop = () => {
@@ -2395,6 +3912,7 @@
                     }
                 } catch (err) {
                     console.warn("Kamera AR tidak dapat diakses secara langsung:", err);
+                    document.body.classList.remove('has-webcam');
                     document.getElementById('loading-msg').innerHTML = "Mod Sentuh / Tetikus Sedia! Klik butang di bawah untuk bermain terus pada <b>iPad, Smartphone atau Komputer</b>:";
                     document.getElementById('btn-fallback-start').style.display = 'inline-flex';
                 }
@@ -2427,6 +3945,7 @@
                 if (this.gameState !== 'INIT') return;
                 SoundFX.init();
                 SoundFX.playCoin();
+                document.body.classList.remove('has-webcam');
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('cam-label').innerText = "MOD SENTUH / SIMULASI: AKTIF";
                 this.simulatedHand = { x: window.innerWidth / 2, y: window.innerHeight / 2, pinching: false, fist: false };
@@ -2435,11 +3954,25 @@
                 this.startRenderLoopOnce();
             }
 
+            static toggleFullscreen() {
+                SoundFX.init();
+                SoundFX.playPinch();
+                const docEl = document.documentElement;
+                const isFs = document.fullscreenElement || document.webkitFullscreenElement;
+                if (!isFs) {
+                    if (docEl.requestFullscreen) docEl.requestFullscreen().catch(() => {});
+                    else if (docEl.webkitRequestFullscreen) docEl.webkitRequestFullscreen();
+                } else {
+                    if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+                    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                }
+            }
+
             static tryLoadLocalAssets() {
                 // Gunakan animasi Pac-Man Attract Mode & SVG Vektor secara langsung
                 const bgImg = document.getElementById('home-bg');
                 if (bgImg) bgImg.style.display = 'none';
-                [1, 2, 3].forEach((id) => {
+                [1, 2, 3, 4].forEach((id) => {
                     const imgEl = document.getElementById(`char-img-${id}`);
                     const svgEl = document.getElementById(`char-svg-${id}`);
                     if (imgEl) imgEl.style.display = 'none';
@@ -2484,7 +4017,7 @@
                         c.targetX = e.clientX;
                         c.targetY = e.clientY;
                         this.checkHover(e.clientX, e.clientY);
-                        if (dragStartX !== null && this.gameState === 'NOTE' && !this.isFlipping) {
+                        if (dragStartX !== null && this.gameState === 'NOTE' && this.activeModule >= 1 && this.activeModule <= 4 && !this.isFlipping) {
                             const dx = e.clientX - dragStartX;
                             if (dx < -80) { this.triggerPageFlip('next'); dragStartX = null; }
                             else if (dx > 80) { this.triggerPageFlip('prev'); dragStartX = null; }
@@ -2587,7 +4120,7 @@
                     c.targetX = t.clientX;
                     c.targetY = t.clientY;
 
-                    if (dragStartX !== null && this.gameState === 'NOTE' && !this.isFlipping) {
+                    if (dragStartX !== null && this.gameState === 'NOTE' && this.activeModule >= 1 && this.activeModule <= 4 && !this.isFlipping) {
                         const dx = t.clientX - dragStartX;
                         if (dx < -65) { this.triggerPageFlip('next'); dragStartX = null; }
                         else if (dx > 65) { this.triggerPageFlip('prev'); dragStartX = null; }
@@ -2618,6 +4151,12 @@
                     if (e.code === 'Escape' && this.gameState !== 'MENU') {
                         this.showMenu();
                         return;
+                    }
+                    if (this.gameState === 'NOTE' && this.activeModule === 0 && window.SetInduksiMazeZ0) {
+                        if (e.code === 'ArrowUp' || e.code === 'KeyW') { e.preventDefault(); SetInduksiMazeZ0.move(0, -1); return; }
+                        if (e.code === 'ArrowDown' || e.code === 'KeyS') { e.preventDefault(); SetInduksiMazeZ0.move(0, 1); return; }
+                        if (e.code === 'ArrowLeft' || e.code === 'KeyA') { e.preventDefault(); SetInduksiMazeZ0.move(-1, 0); return; }
+                        if (e.code === 'ArrowRight' || e.code === 'KeyD') { e.preventDefault(); SetInduksiMazeZ0.move(1, 0); return; }
                     }
                     if (e.code === 'Space' && this.gameState === 'PLAYING' && this.activeModule === 3) {
                         if (this.simulatedHand) this.simulatedHand.fist = true;
@@ -2661,12 +4200,18 @@
                 this.uiClickCooldownUntil = performance.now() + 500;
                 this.gameState = 'MENU';
                 document.body.classList.remove('is-playing');
+                document.body.classList.remove('is-set-induksi');
+                document.body.classList.remove('is-theatre-z4');
 
                 if (GameEngine.spawner) {
                     clearInterval(GameEngine.spawner);
                     GameEngine.spawner = null;
                 }
                 GameEngine.clearActiveGameObjects();
+
+                if (window.ArtTheatreZ4) {
+                    ArtTheatreZ4.pauseCustomAudio();
+                }
 
                 // Reset status cubitan supaya tidak terklik secara automatik di menu utama
                 this.cursors.forEach(c => {
@@ -2680,11 +4225,11 @@
                 document.getElementById('note-modal').style.display = 'none';
                 document.getElementById('game-hud').style.display = 'none';
                 document.getElementById('result-screen').style.display = 'none';
-                this.updateMascot("🟡", "Cubit (🤏) watak Pac-Man (Zon 1), Inky (Zon 2) atau Pinky (Zon 3) untuk mula!");
+                this.updateMascot("🟡", "Mula dengan SET INDUKSI di atas, atau pilih ZON 1 (Warna), ZON 2 (Garisan), ZON 3 (Bentuk) & APRESIASI!");
             }
 
             static openModuleNote(modId) {
-                if (modId < 1 || modId > 3) return;
+                if (modId < 0 || modId > 4) return;
                 SoundFX.init();
                 SoundFX.playCoin();
                 this.uiClickCooldownUntil = performance.now() + 500;
@@ -2692,15 +4237,48 @@
                 this.currentCardIndex = 0;
                 this.gameState = 'NOTE';
                 document.body.classList.remove('is-playing');
+                document.body.classList.toggle('is-set-induksi', modId === 0);
+                document.body.classList.toggle('is-theatre-z4', modId === 4);
+
+                // Jika APRESIASI (modId === 4), sentiasa sembunyikan latar belakang Attract Mode supaya wajah murid di kamera (#webcam) kelihatan 100% jelas apabila tirai dibuka!
+                const homeBgWrap = document.getElementById('home-bg-wrap');
+                if (homeBgWrap) {
+                    homeBgWrap.style.display = (modId === 4) ? 'none' : 'block';
+                }
 
                 document.getElementById('main-menu').style.display = 'none';
+                document.getElementById('result-screen').style.display = 'none';
+                document.getElementById('game-hud').style.display = 'none';
                 document.getElementById('note-modal').style.display = 'block';
 
-                for (let i = 1; i <= 3; i++) {
+                for (let i = 0; i <= 4; i++) {
                     const sc = document.getElementById(`scene-dunia-${i}`);
                     if (sc) sc.classList.toggle('active-scene', i === modId);
                 }
 
+                if (modId === 0) {
+                    if (window.SetInduksiMazeZ0) {
+                        SetInduksiMazeZ0.initGame();
+                    }
+                    this.updateMascot(
+                        `<svg viewBox="0 0 36 36" width="34" height="34"><path d="M18,18 L32,9 A16,16 0 1,0 32,27 Z" fill="#FFE600" stroke="#FFF" stroke-width="1.8"/><circle cx="19" cy="9.5" r="2.2" fill="#04071A"/></svg>`,
+                        "SET INDUKSI (PAC-MAN ARTPIXEL): Gerakkan Pac-Man menggunakan Analog Joystick, Butang Arah D-Pad, Papan Kekunci atau Cubit Tangan AR untuk meneroka 14 Unsur Seni!"
+                    );
+                    return;
+                }
+
+                if (modId === 4) {
+                    ArtTheatreZ4.initStage();
+                    this.updateMascot(
+                        `<svg viewBox="0 0 36 36" width="34" height="34"><path d="M5,20 C5,9 12,4 18,4 C24,4 31,9 31,20 L31,32 L26,27 L22,32 L18,27 L14,32 L10,27 L5,32 Z" fill="#FF8800" stroke="#FFF" stroke-width="1.8"/><ellipse cx="14" cy="15" rx="3.2" ry="4.2" fill="#FFF"/><ellipse cx="22" cy="15" rx="3.2" ry="4.2" fill="#FFF"/><circle cx="15" cy="15.5" r="1.8" fill="#1B3BFF"/><circle cx="23" cy="15.5" r="1.8" fill="#1B3BFF"/></svg>`,
+                        "APRESIASI (PENTAS SENI): Klik atau cubit 'BUKA TIRAI' untuk mempamerkan karya seni bersama kamera langsung, pilih ayat pujian, atau ambil gambar!"
+                    );
+                    return;
+                }
+
+                if (window.ArtTheatreZ4) {
+                    ArtTheatreZ4.pauseCustomAudio();
+                }
                 this.renderWorldSpecificNote(0, false);
                 const wData = worldNoteData[modId];
                 this.updateMascot(wData.mascotEmoji, wData.mascotTip);
@@ -2782,6 +4360,12 @@
 
             static triggerPageFlip(direction) {
                 if (this.isFlipping) return;
+                if (this.activeModule === 4 && window.ArtTheatreZ4) {
+                    this.isFlipping = true;
+                    ArtTheatreZ4.cycleCategory(direction);
+                    setTimeout(() => { this.isFlipping = false; }, 350);
+                    return;
+                }
                 const wData = worldNoteData[this.activeModule];
                 if (!wData) return;
                 const maxIdx = wData.cards.length - 1;
@@ -2968,7 +4552,14 @@
             }
 
             static updateMascot(emoji, text) {
-                document.getElementById('mascot-avatar').innerText = emoji;
+                const av = document.getElementById('mascot-avatar');
+                if (av) {
+                    if (typeof emoji === 'string' && emoji.trim().startsWith('<svg')) {
+                        av.innerHTML = emoji;
+                    } else {
+                        av.innerText = emoji;
+                    }
+                }
                 document.getElementById('mascot-speech').innerText = text;
             }
 
@@ -3074,6 +4665,9 @@
                     GameEngine.updateAndDraw(this.ctx, this.canvas, dtNorm, timestamp);
                 } else {
                     PacManAttractWallpaper.updateAndDraw(dtNorm, timestamp);
+                    if (this.gameState === 'NOTE' && this.activeModule === 0 && window.SetInduksiMazeZ0) {
+                        SetInduksiMazeZ0.updateAndDraw(dtNorm, timestamp);
+                    }
                 }
 
                 if (this.video && this.video.srcObject && this.video.readyState >= 2) {
@@ -3186,13 +4780,26 @@
                         if (!c.isShooting) {
                             c.isShooting = true;
                             c.pinchStartX = c.x;
+                            c.pinchStartY = c.y;
                             c.hasTurned = false;
                             c.el.classList.add('shooting');
                             SoundFX.init();
                             SoundFX.playPinch();
                             this.triggerPinchClick(index, c.targetX, c.targetY, timestamp);
                         } else {
-                            if (this.gameState === 'NOTE' && !c.hasTurned && !this.isFlipping) {
+                            if (this.gameState === 'NOTE' && this.activeModule === 0 && window.SetInduksiMazeZ0) {
+                                const dx = c.x - (c.pinchStartX || c.x);
+                                const dy = c.y - (c.pinchStartY || c.y);
+                                if (Math.hypot(dx, dy) > 46) {
+                                    if (Math.abs(dx) > Math.abs(dy)) {
+                                        SetInduksiMazeZ0.move(dx > 0 ? 1 : -1, 0);
+                                    } else {
+                                        SetInduksiMazeZ0.move(0, dy > 0 ? 1 : -1);
+                                    }
+                                    c.pinchStartX = c.x;
+                                    c.pinchStartY = c.y;
+                                }
+                            } else if (this.gameState === 'NOTE' && !c.hasTurned && !this.isFlipping) {
                                 const dragDist = c.x - c.pinchStartX;
                                 if (dragDist < -90) {
                                     this.triggerPageFlip('next');
@@ -6537,10 +8144,1453 @@
             }
         }
 
+        // =========================================================
+        // 5. APRESIASI (PENTAS SENI VISUAL): TIRAI SKRIN PENUH DENGAN KAMERA LANGSUNG MURID & KARYA SENI (100% IKON VEKTOR SVG TANPA EMOJI)
+        // =========================================================
+        class ArtTheatreZ4 {
+            static categoryKeys = ["warna", "garisan", "kreativiti", "usaha"];
+            static currentCatIdx = 0;
+            static initialized = false;
+            static selectedSentence = "";
+
+            static appreciation = {
+                warna: [
+                    "Saya suka penggunaan warna yang menarik dalam karya ini.",
+                    "Warna yang digunakan sangat cantik dan ceria.",
+                    "Gabungan warna dalam karya ini sangat harmoni.",
+                    "Warna yang dipilih membuatkan karya ini kelihatan istimewa."
+                ],
+                garisan: [
+                    "Saya suka garisan yang digunakan dalam karya ini.",
+                    "Garisan yang pelbagai menjadikan karya ini menarik.",
+                    "Bentuk yang digunakan sangat kreatif.",
+                    "Saya tertarik dengan susunan rupa dalam karya ini."
+                ],
+                kreativiti: [
+                    "Karya ini sangat kreatif dan unik!",
+                    "Saya kagum dengan idea yang digunakan.",
+                    "Karya ini menunjukkan imaginasi yang hebat.",
+                    "Saya suka cara kamu menghasilkan karya ini."
+                ],
+                usaha: [
+                    "Tahniah kerana menghasilkan karya yang menarik!",
+                    "Kamu sangat kreatif dan berbakat.",
+                    "Saya suka usaha kamu menghasilkan karya ini.",
+                    "Teruskan berkarya dan mencuba idea baharu!"
+                ]
+            };
+
+            static svgChatBubbleInline = `<svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="#FFE600" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`;
+            static svgMicInline = `<svg viewBox="0 0 24 24" width="24" height="24" style="vertical-align:middle; margin-right:6px; filter:drop-shadow(0 0 6px #FFE600);" fill="none" stroke="#FFE600" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>`;
+            static svgStarInline = `<svg viewBox="0 0 24 24" width="22" height="22" style="vertical-align:middle; flex-shrink:0; filter:drop-shadow(0 0 5px #FFDF00);"><polygon points="12,2 15.1,8.3 22,9.3 17,14.1 18.2,21 12,17.7 5.8,21 7,14.1 2,9.3 8.9,8.3" fill="#FFDF00" stroke="#FF8800" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
+
+            static initStage() {
+                if (!this.initialized) {
+                    this.initialized = true;
+                    const firstCatBtn = document.querySelector("#scene-dunia-4 .z4-category[data-cat='warna']");
+                    this.showCategory("warna", firstCatBtn, true);
+                }
+                const mainGrid = document.getElementById("z4-main-grid");
+                const drawerBtnText = document.getElementById("z4-drawerBtnText");
+                if (mainGrid) mainGrid.classList.remove("z4-Main-drawer-collapsed");
+                if (drawerBtnText) drawerBtnText.textContent = "LIPAT PANEL";
+
+                const camBadge = document.getElementById("z4-camStatusBadge");
+                if (camBadge) {
+                    camBadge.innerHTML = document.body.classList.contains("has-webcam")
+                        ? `<span class="z4-cam-live-dot"></span> KAMERA LANGSUNG AKTIF — PAMERKAN KARYA SENI ANDA DI PENTAS!`
+                        : `<span class="z4-cam-live-dot"></span> PENTAS APRESIASI AKTIF — PILIH AYAT PUJIAN SENI!`;
+                }
+
+                // Mulakan dengan tirai skrin penuh tertutup supaya pengguna boleh klik atau cubit (AR) 'BUKA TIRAI'
+                this.closeStage(true);
+            }
+
+            static async ensureCameraForStage() {
+                const homeBgWrap = document.getElementById("home-bg-wrap");
+                if (homeBgWrap) homeBgWrap.style.display = "none";
+
+                const video = document.getElementById("webcam");
+                if (video && (!video.srcObject || !video.srcObject.active) && navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    try {
+                        const stream = await navigator.mediaDevices.getUserMedia({
+                            video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 480 } },
+                            audio: false
+                        });
+                        video.srcObject = stream;
+                        video.setAttribute("playsinline", "");
+                        video.muted = true;
+                        document.body.classList.add("has-webcam");
+                        await video.play().catch(() => {});
+                    } catch (e) {
+                        // Biarkan terus berfungsi jika peranti tiada kamera
+                    }
+                }
+            }
+
+            static openStage(silent = false, keepText = false) {
+                const stage = document.getElementById("z4-stage");
+                if (!stage) return;
+                if (!silent) {
+                    SoundFX.init();
+                    SoundFX.playWorldAction(3);
+                }
+                this.ensureCameraForStage();
+                stage.classList.add("open");
+                if (!keepText) {
+                    const stTitle = document.getElementById("z4-stageTitle");
+                    const stText = document.getElementById("z4-stageText");
+                    if (stTitle) stTitle.textContent = "PENTAS KAMERA APRESIASI AKTIF";
+                    if (stText) {
+                        stText.textContent = "Tunjukkan wajah & karya seni anda di kamera, kemudian pilih ayat apresiasi!";
+                    }
+                }
+            }
+
+            static closeStage(silent = false) {
+                const stage = document.getElementById("z4-stage");
+                if (!stage) return;
+                if (!silent) {
+                    SoundFX.init();
+                    SoundFX.playPinch();
+                }
+                stage.classList.remove("open");
+                const childEl = document.getElementById("z4-child");
+                if (childEl) childEl.classList.remove("speaking");
+            }
+
+            static toggleDrawer() {
+                SoundFX.init();
+                SoundFX.playPinch();
+                const mainGrid = document.getElementById("z4-main-grid");
+                const drawerBtnText = document.getElementById("z4-drawerBtnText");
+                if (!mainGrid) return;
+                const collapsed = mainGrid.classList.toggle("z4-Main-drawer-collapsed");
+                if (drawerBtnText) {
+                    drawerBtnText.textContent = collapsed ? "BUKA PANEL" : "LIPAT PANEL";
+                }
+                // Pastikan tirai terbuka apabila murid melipat panel untuk melihat kamera penuh
+                if (collapsed) {
+                    this.openStage(true, true);
+                }
+            }
+
+            static capturePhoto() {
+                SoundFX.init();
+                SoundFX.playWin();
+
+                // Pastikan tirai dibuka dahulu supaya wajah & karya seni murid jelas
+                this.openStage(true, true);
+
+                const flashEl = document.getElementById("z4-shutter-flash");
+                if (flashEl) {
+                    flashEl.classList.add("flash-now");
+                    setTimeout(() => flashEl.classList.remove("flash-now"), 220);
+                }
+
+                const snapCanvas = document.createElement("canvas");
+                snapCanvas.width = 1280;
+                snapCanvas.height = 720;
+                const sctx = snapCanvas.getContext("2d");
+
+                // 1. Latar Belakang Pentas atau Imej Kamera Langsung (Mirror)
+                const video = document.getElementById("webcam");
+                if (video && video.srcObject && video.readyState >= 2) {
+                    const vw = video.videoWidth || 640;
+                    const vh = video.videoHeight || 480;
+                    const scale = Math.max(snapCanvas.width / vw, snapCanvas.height / vh);
+                    const rw = vw * scale;
+                    const rh = vh * scale;
+                    const ox = (snapCanvas.width - rw) / 2;
+                    const oy = (snapCanvas.height - rh) / 2;
+
+                    sctx.save();
+                    sctx.translate(snapCanvas.width, 0);
+                    sctx.scale(-1, 1);
+                    sctx.drawImage(video, ox, oy, rw, rh);
+                    sctx.restore();
+                } else {
+                    const bgGrad = sctx.createRadialGradient(640, 320, 60, 640, 360, 680);
+                    bgGrad.addColorStop(0, "#76503e");
+                    bgGrad.addColorStop(0.65, "#25101d");
+                    bgGrad.addColorStop(1, "#09060b");
+                    sctx.fillStyle = bgGrad;
+                    sctx.fillRect(0, 0, snapCanvas.width, snapCanvas.height);
+                }
+
+                // 2. Bingkai Tirai Kiri & Kanan dan Valance Atas Pentas
+                const curtainGradL = sctx.createLinearGradient(0, 0, 110, 0);
+                curtainGradL.addColorStop(0, "#4d0017");
+                curtainGradL.addColorStop(0.5, "#9b002e");
+                curtainGradL.addColorStop(1, "#3b0011");
+                sctx.fillStyle = curtainGradL;
+                sctx.fillRect(0, 0, 74, snapCanvas.height);
+                sctx.fillRect(snapCanvas.width - 74, 0, 74, snapCanvas.height);
+
+                sctx.fillStyle = "#61001b";
+                sctx.fillRect(0, 0, snapCanvas.width, 54);
+                sctx.strokeStyle = "#FFE600";
+                sctx.lineWidth = 6;
+                sctx.strokeRect(8, 8, snapCanvas.width - 16, snapCanvas.height - 16);
+
+                // 3. Tajuk Pentas Di Atas
+                sctx.fillStyle = "rgba(18, 6, 22, 0.85)";
+                sctx.beginPath();
+                sctx.roundRect(310, 18, 660, 48, 24);
+                sctx.fill();
+                sctx.strokeStyle = "#FFE600";
+                sctx.lineWidth = 3;
+                sctx.stroke();
+
+                sctx.fillStyle = "#FFE600";
+                sctx.font = "bold 20px 'Press Start 2P', monospace";
+                sctx.textAlign = "center";
+                sctx.textBaseline = "middle";
+                sctx.fillText("APRESIASI • PENTAS SENI VISUAL", 640, 43);
+
+                // 4. Kapsul Ayat Apresiasi Di Bawah
+                const speechEl = document.getElementById("z4-speech");
+                const quoteText = (speechEl && speechEl.textContent.trim().length > 0)
+                    ? speechEl.textContent.trim()
+                    : "“Tahniah! Karya seni yang sangat kreatif dan menarik!”";
+
+                sctx.fillStyle = "rgba(18, 6, 22, 0.88)";
+                sctx.beginPath();
+                sctx.roundRect(140, snapCanvas.height - 104, 1000, 72, 20);
+                sctx.fill();
+                sctx.strokeStyle = "#FFE600";
+                sctx.lineWidth = 3.5;
+                sctx.stroke();
+
+                sctx.fillStyle = "#FFF2A6";
+                sctx.font = "bold 24px Fredoka, sans-serif";
+                sctx.fillText(quoteText, 640, snapCanvas.height - 68);
+
+                try {
+                    const link = document.createElement("a");
+                    link.download = "apresiasi-seni-pacman.png";
+                    link.href = snapCanvas.toDataURL("image/png");
+                    link.click();
+                } catch (err) {
+                    console.warn("Gagal memuat turun gambar:", err);
+                }
+            }
+
+            static cycleCategory(direction) {
+                if (direction === 'next') {
+                    this.currentCatIdx = (this.currentCatIdx + 1) % this.categoryKeys.length;
+                } else {
+                    this.currentCatIdx = (this.currentCatIdx - 1 + this.categoryKeys.length) % this.categoryKeys.length;
+                }
+                const catKey = this.categoryKeys[this.currentCatIdx];
+                const btn = document.querySelector(`#scene-dunia-4 .z4-category[data-cat='${catKey}']`);
+                this.showCategory(catKey, btn);
+            }
+
+            static showCategory(category, button, silent = false) {
+                if (!this.appreciation[category]) return;
+                if (!silent) {
+                    SoundFX.init();
+                    SoundFX.playPinch();
+                }
+                this.currentCatIdx = Math.max(0, this.categoryKeys.indexOf(category));
+
+                document.querySelectorAll("#scene-dunia-4 .z4-category").forEach(btn => {
+                    btn.classList.remove("active");
+                });
+                if (button) {
+                    button.classList.add("active");
+                } else {
+                    const fallbackBtn = document.querySelector(`#scene-dunia-4 .z4-category[data-cat='${category}']`);
+                    if (fallbackBtn) fallbackBtn.classList.add("active");
+                }
+
+                const answers = document.getElementById("z4-answers");
+                if (!answers) return;
+                answers.innerHTML = "";
+
+                this.appreciation[category].forEach(sentence => {
+                    const btn = document.createElement("button");
+                    btn.className = "z4-answer";
+                    btn.innerHTML = `${this.svgChatBubbleInline} <span>${sentence}</span>`;
+
+                    btn.onclick = () => {
+                        SoundFX.init();
+                        SoundFX.playScore(true);
+
+                        document.querySelectorAll("#z4-answers .z4-answer").forEach(b => b.classList.remove("selected"));
+                        btn.classList.add("selected");
+
+                        const speechEl = document.getElementById("z4-speech");
+                        const stTitle = document.getElementById("z4-stageTitle");
+                        const stText = document.getElementById("z4-stageText");
+                        const childEl = document.getElementById("z4-child");
+
+                        this.selectedSentence = sentence;
+                        if (speechEl) speechEl.innerHTML = `${this.svgStarInline} <span>“${sentence}”</span>`;
+                        const endingQuoteEl = document.getElementById("z4-ending-chosen-quote");
+                        if (endingQuoteEl) endingQuoteEl.textContent = `“${sentence}”`;
+                        if (stTitle) stTitle.innerHTML = `${this.svgMicInline} SAYA INGIN MENYAMPAIKAN APRESIASI!`;
+                        if (stText) stText.textContent = "Terima kasih kerana berkongsi karya seni!";
+                        if (childEl) childEl.classList.add("speaking");
+
+                        this.openStage(true, true);
+                    };
+
+                    answers.appendChild(btn);
+                });
+            }
+
+            static clearSpeech() {
+                SoundFX.init();
+                SoundFX.playPinch();
+
+                this.selectedSentence = "";
+                const speechEl = document.getElementById("z4-speech");
+                const stTitle = document.getElementById("z4-stageTitle");
+                const stText = document.getElementById("z4-stageText");
+                const childEl = document.getElementById("z4-child");
+
+                if (speechEl) speechEl.textContent = "Pilih ayat apresiasi di sebelah untuk disampaikan di pentas.";
+                if (stTitle) stTitle.textContent = "SELAMAT DATANG!";
+                if (stText) stText.textContent = "Pilih ayat apresiasi yang kamu suka.";
+                if (childEl) childEl.classList.remove("speaking");
+
+                document.querySelectorAll("#z4-answers .z4-answer").forEach(b => b.classList.remove("selected"));
+            }
+
+            static finish() {
+                SoundFX.init();
+                SoundFX.playWin();
+
+                const appPanel = document.getElementById("z4-appreciation");
+                const endPanel = document.getElementById("z4-ending");
+                const stTitle = document.getElementById("z4-stageTitle");
+                const stText = document.getElementById("z4-stageText");
+                const speechEl = document.getElementById("z4-speech");
+                const endingQuoteEl = document.getElementById("z4-ending-chosen-quote");
+                const childEl = document.getElementById("z4-child");
+
+                const chosen = (this.selectedSentence && this.selectedSentence.trim().length > 0)
+                    ? this.selectedSentence.trim()
+                    : "Saya suka penggunaan warna yang menarik dalam karya ini.";
+
+                if (appPanel) appPanel.classList.add("hidden");
+                if (endPanel) endPanel.classList.remove("hidden");
+
+                if (stTitle) stTitle.textContent = "SYABAS!";
+                if (stText) stText.textContent = "Ayat apresiasi pilihan kamu:";
+                if (speechEl) speechEl.innerHTML = `${this.svgStarInline} <span>“${chosen}”</span>`;
+                if (endingQuoteEl) endingQuoteEl.textContent = `“${chosen}”`;
+                if (childEl) childEl.classList.add("speaking");
+
+                this.openStage(true, true);
+            }
+
+            static pauseCustomAudio() {
+                // Dikekalkan untuk keserasian panggilan daripada App.showMenu()
+            }
+
+            static restart() {
+                SoundFX.init();
+                SoundFX.playCoin();
+
+                const endPanel = document.getElementById("z4-ending");
+                const appPanel = document.getElementById("z4-appreciation");
+                const speechEl = document.getElementById("z4-speech");
+                const stTitle = document.getElementById("z4-stageTitle");
+                const stText = document.getElementById("z4-stageText");
+                const childEl = document.getElementById("z4-child");
+
+                this.selectedSentence = "";
+                if (endPanel) endPanel.classList.add("hidden");
+                if (appPanel) appPanel.classList.remove("hidden");
+                if (speechEl) speechEl.textContent = "Pilih ayat apresiasi di sebelah untuk disampaikan di pentas.";
+                if (stTitle) stTitle.textContent = "SELAMAT DATANG!";
+                if (stText) stText.textContent = "Mari kita hargai karya seni rakan kita!";
+                if (childEl) childEl.classList.remove("speaking");
+
+                const firstCatBtn = document.querySelector("#scene-dunia-4 .z4-category[data-cat='warna']");
+                this.showCategory("warna", firstCatBtn, true);
+                this.openStage(true, true);
+            }
+        }
+
+        // =========================================================
+        // 6. SET INDUKSI (ZON 0): PAC-MAN ARTPIXEL ADVENTURE MAZE (15x15)
+        //    - Reka Bentuk Kabinet Arcade Neon Pac-Man Sebenar (Tanpa Emoji — 100% Lukisan Vektor Canvas & SVG)
+        //    - 14 Jenis Unsur Seni Interaktif: Garisan (10-12), Warna (20-23), Rupa & Bentuk 2D/3D (30-34), Jalinan (40-41)
+        //    - Sokongan Pelbagai Peranti: Analog Joystick Maya, Butang Arah D-Pad, Leretan Skrin, Papan Kekunci & Cubitan Tangan AR
+        // =========================================================
+        class SetInduksiMazeZ0 {
+            static GRID_SIZE = 15;
+            static TILE_SIZE = 40; // 600 / 15 = 40px
+            static TOTAL_ELEMENTS = 16;
+
+            // 15x15 Maze dengan tepat 16 Token Unsur Seni (Semua boleh dicapai 100%)
+            static BASE_MAZE = [
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                [1, 2, 0, 10, 0, 1, 0, 20, 0, 1, 0, 30, 0, 33, 1],
+                [1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1],
+                [1, 11, 1, 0, 0, 0, 0, 1, 21, 0, 0, 0, 1, 31, 1],
+                [1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+                [1, 0, 0, 0, 1, 40, 0, 0, 0, 41, 1, 0, 0, 0, 1],
+                [1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1],
+                [1, 12, 0, 0, 0, 0, 1, 3, 1, 0, 0, 0, 0, 32, 1],
+                [1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1],
+                [1, 22, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23, 1],
+                [1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1],
+                [1, 0, 0, 0, 1, 30, 0, 0, 0, 31, 1, 0, 0, 0, 1],
+                [1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1],
+                [1, 0, 1, 0, 0, 0, 0, 34, 0, 0, 0, 0, 1, 0, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+            ];
+
+            static ELEMENT_INFO = {
+                10: { cat: "GARISAN", title: "GARISAN: ZIG-ZAG", desc: "Memberi kesan tenaga elektrik & pecutan pantas!", color: "#FFE600" },
+                11: { cat: "GARISAN", title: "GARISAN: BERALUN", desc: "Menggambarkan aliran ombak & pergerakan lembut!", color: "#00E5FF" },
+                12: { cat: "GARISAN", title: "GARISAN: BERPUSING", desc: "Pusaran tenaga dinamik yang menarik perhatian!", color: "#50FA7B" },
+                20: { cat: "WARNA",   title: "WARNA: MERAH (PANAS)", desc: "Melambangkan keberanian, tenaga & bahang!", color: "#FF1744", flash: "rgba(255, 23, 68, 0.35)" },
+                21: { cat: "WARNA",   title: "WARNA: KUNING (CERIA)", desc: "Memberi suasana terang, gembira & bercahaya!", color: "#FFE600", flash: "rgba(255, 230, 0, 0.35)" },
+                22: { cat: "WARNA",   title: "WARNA: HIJAU (SEJUK)", desc: "Melambangkan kesegaran alam semula jadi!", color: "#00E676", flash: "rgba(0, 230, 118, 0.35)" },
+                23: { cat: "WARNA",   title: "WARNA: BIRU (TENANG)", desc: "Memberi rasa damai, luas & harmoni!", color: "#2979FF", flash: "rgba(41, 121, 255, 0.35)" },
+                30: { cat: "BENTUK",  title: "RUPA: BULATAN (2D)", desc: "Garisan tertutup rata tanpa bucu (2 Dimensi)!", color: "#FF9100", shape: "circle" },
+                31: { cat: "BENTUK",  title: "RUPA: SEGI TIGA (2D)", desc: "Mempunyai 3 sisi lurus dan 3 bucu tajam!", color: "#00E676", shape: "triangle" },
+                32: { cat: "BENTUK",  title: "RUPA: SEGI EMPAT (2D)", desc: "Mempunyai 4 sisi sama panjang & stabil!", color: "#00E5FF", shape: "square" },
+                33: { cat: "BENTUK",  title: "BENTUK: KUBUS (3D)", desc: "Mempunyai keluasan, ketinggian & isi padu (6 permukaan)!", color: "#E040FB", shape: "cube" },
+                34: { cat: "BENTUK",  title: "BENTUK: SFERA (3D)", desc: "Bentuk bulat 3 dimensi berjisim seperti bola!", color: "#FF4081", shape: "sphere" },
+                40: { cat: "JALINAN", title: "JALINAN: KASAR", desc: "Permukaan berbatu & tajam yang boleh dirasai!", color: "#FF6D00" },
+                41: { cat: "JALINAN", title: "JALINAN: LEMBUT", desc: "Permukaan gebu & halus seperti kapas dan awan!", color: "#EA80FC" }
+            };
+
+            static canvas = null;
+            static ctx = null;
+            static controlsBound = false;
+            static dotsGrid = [];
+            static totalPellets = 0;
+            static pelletsEaten = 0;
+            static collectedTokens = new Set(); // Simpan koordinat "r,c" bagi 16 token
+            static score = 0;
+            static lives = 3;
+            static isFinished = false;
+            static invincibleUntil = 0;
+            static bannerTimeout = null;
+            static startTimeMs = 0;
+            static elapsedSec = 0;
+
+            static player = {
+                gx: 1,
+                gy: 1,
+                startX: 1,
+                startY: 1,
+                vx: 1,
+                vy: 1,
+                facingX: 1,
+                facingY: 0,
+                isMoving: false,
+                progress: 0,
+                speed: 0.14, // Licin 1 petak setiap klik (~115ms) supaya mudah belok di setiap simpang
+                queuedDir: null,
+                mouthPhase: 0,
+                boostTimer: 0,
+                trail: []
+            };
+
+            static ghosts = [];
+            static particles = [];
+            static floatingShapes = [];
+
+            // State Analog Joystick & D-Pad Hold
+            static joyActive = false;
+            static joyVec = { x: 0, y: 0 };
+            static lastJoyStepMs = 0;
+            static heldDir = null;
+            static heldSinceMs = 0;
+            static lastHeldStepMs = 0;
+
+            static initGame() {
+                this.canvas = document.getElementById("z0-maze-canvas");
+                if (!this.canvas) return;
+                this.ctx = this.canvas.getContext("2d");
+
+                this.setupControlsOnce();
+
+                this.collectedTokens = new Set();
+                this.score = 0;
+                this.lives = 3;
+                this.isFinished = false;
+                this.invincibleUntil = 0;
+                this.particles = [];
+                this.floatingShapes = [];
+                this.startTimeMs = performance.now();
+                this.elapsedSec = 0;
+                this.heldDir = null;
+
+                // Bina grid Pac-Dots pada semua petak laluan (0)
+                this.totalPellets = 0;
+                this.pelletsEaten = 0;
+                this.dotsGrid = this.BASE_MAZE.map(row => row.map(cell => {
+                    if (cell === 0) {
+                        this.totalPellets++;
+                        return 1;
+                    }
+                    return 0;
+                }));
+
+                this.player = {
+                    gx: 1,
+                    gy: 1,
+                    startX: 1,
+                    startY: 1,
+                    vx: 1,
+                    vy: 1,
+                    facingX: 1,
+                    facingY: 0,
+                    isMoving: false,
+                    progress: 0,
+                    speed: 0.14,
+                    queuedDir: null,
+                    mouthPhase: 0,
+                    boostTimer: 0,
+                    trail: []
+                };
+
+                // 2 Hantu Peronda Mesra Murid (Bergerak perlahan di koridor supaya seronok & mencabar seperti Pac-Man sebenar)
+                this.ghosts = [
+                    { name: "BLINKY", color: "#FF1744", col: 7, row: 5, dirX: 1, dirY: 0, progress: 0, speed: 0.025 },
+                    { name: "PINKY",  color: "#FF80AB", col: 7, row: 9, dirX: -1, dirY: 0, progress: 0, speed: 0.023 }
+                ];
+
+                const modal = document.getElementById("z0-finish-modal");
+                if (modal) modal.classList.remove("show");
+
+                const banner = document.getElementById("z0-element-banner");
+                if (banner) banner.classList.remove("show");
+
+                const canvasShell = document.getElementById("z0-canvas-shell");
+                if (canvasShell) canvasShell.classList.remove("z0-shake-active");
+
+                for (let cat of ["garisan", "warna", "bentuk", "jalinan"]) {
+                    const cardEl = document.getElementById(`z0-leg-${cat}`);
+                    if (cardEl) cardEl.classList.remove("discovered");
+                }
+
+                this.updateHUD();
+            }
+
+            static resetGame() {
+                SoundFX.init();
+                SoundFX.playCoin();
+                this.initGame();
+            }
+
+            static restartGame() {
+                this.resetGame();
+            }
+
+            static getStarCount() {
+                if (this.lives >= 3 && this.elapsedSec <= 95) return 3;
+                if (this.lives >= 2 && this.elapsedSec <= 150) return 2;
+                return 1;
+            }
+
+            static renderStarsSvg(count, size = 14) {
+                let html = "";
+                for (let i = 1; i <= 3; i++) {
+                    const fill = i <= count ? "#FFE600" : "rgba(255,255,255,0.22)";
+                    const stroke = i <= count ? "#FF9100" : "rgba(255,255,255,0.4)";
+                    html += `<svg viewBox="0 0 24 24" width="${size}" height="${size}"><polygon points="12,2 15.1,8.3 22,9.3 17,14.1 18.2,21 12,17.7 5.8,21 7,14.1 2,9.3 8.9,8.3" fill="${fill}" stroke="${stroke}" stroke-width="1.8" stroke-linejoin="round"/></svg>`;
+                }
+                return html;
+            }
+
+            static formatTime(sec) {
+                const m = Math.floor(sec / 60);
+                const s = Math.floor(sec % 60);
+                return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+            }
+
+            static updateHUD() {
+                const tokensEl = document.getElementById("z0-tokens-count");
+                if (tokensEl) {
+                    tokensEl.textContent = `${this.collectedTokens.size} / ${this.TOTAL_ELEMENTS}`;
+                }
+                const pelletsEl = document.getElementById("z0-pellets-count");
+                if (pelletsEl) {
+                    pelletsEl.textContent = `${this.pelletsEaten} / ${this.totalPellets}`;
+                }
+                const timerEl = document.getElementById("z0-timer-val");
+                if (timerEl) {
+                    timerEl.textContent = this.formatTime(this.elapsedSec);
+                }
+                const starsHud = document.getElementById("z0-stars-hud");
+                if (starsHud) {
+                    starsHud.innerHTML = this.renderStarsSvg(this.getStarCount(), 13);
+                }
+                const scoreEl = document.getElementById("z0-score-val");
+                if (scoreEl) {
+                    scoreEl.textContent = String(this.score);
+                }
+                const livesEl = document.getElementById("z0-lives");
+                if (livesEl) {
+                    let html = "";
+                    for (let i = 1; i <= 3; i++) {
+                        const opacity = i <= this.lives ? "1" : "0.22";
+                        html += `<svg class="z0-life-svg" style="opacity:${opacity}" viewBox="0 0 24 24"><path d="M12,12 L21,6 A10,10 0 1,0 21,18 Z" fill="#FFE600" stroke="#000" stroke-width="1.5"/></svg>`;
+                    }
+                    livesEl.innerHTML = html;
+                }
+            }
+
+            // Gerakkan Pac-Man tepat 1 petak setiap klik (Licin & Mudah Belok di Setiap Simpang!)
+            static setInputDir(dx, dy) {
+                if (this.isFinished) return;
+                SoundFX.init();
+                const p = this.player;
+
+                // Jika Pac-Man sedang meluncur ke petak sebelah, simpan 1 belokan simpang (queuedDir)
+                if (p.isMoving) {
+                    p.queuedDir = { dx, dy };
+                    return;
+                }
+
+                this.tryStartOneStep(dx, dy);
+            }
+
+            static tryStartOneStep(dx, dy) {
+                if (this.isFinished) return false;
+                const p = this.player;
+                p.facingX = dx;
+                p.facingY = dy;
+
+                const nx = p.gx + dx;
+                const ny = p.gy + dy;
+                if (!this.isWalkable(nx, ny)) return false;
+
+                p.trail.push({ x: p.gx, y: p.gy, alpha: 0.72 });
+                if (p.trail.length > 8) p.trail.shift();
+
+                p.startX = p.gx;
+                p.startY = p.gy;
+                p.gx = nx;
+                p.gy = ny;
+                p.progress = 0;
+                p.isMoving = true;
+
+                // Makan Pac-Dot pellet jika ada pada petak baharu
+                if (this.dotsGrid[ny] && this.dotsGrid[ny][nx] === 1) {
+                    this.dotsGrid[ny][nx] = 0;
+                    this.pelletsEaten++;
+                    this.score += 10;
+                    SoundFX.playCoin();
+                    this.updateHUD();
+                } else {
+                    SoundFX.playPinch();
+                }
+
+                return true;
+            }
+
+            static move(dx, dy) {
+                this.setInputDir(dx, dy);
+            }
+
+            static setupControlsOnce() {
+                if (this.controlsBound) return;
+                this.controlsBound = true;
+
+                // 0. Sokongan Tekan & Tahan (Hold-to-Walk) pada Butang Anak Panah D-Pad (1 Klik = 1 Petak, Tahan = Jalan Berterusan Terkawal)
+                const dpadMap = [
+                    { id: "z0-btn-up", dx: 0, dy: -1 },
+                    { id: "z0-btn-down", dx: 0, dy: 1 },
+                    { id: "z0-btn-left", dx: -1, dy: 0 },
+                    { id: "z0-btn-right", dx: 1, dy: 0 }
+                ];
+                dpadMap.forEach(({ id, dx, dy }) => {
+                    const btn = document.getElementById(id);
+                    if (!btn) return;
+                    btn.addEventListener("pointerdown", (e) => {
+                        const now = performance.now();
+                        this.heldDir = { dx, dy };
+                        this.heldSinceMs = now;
+                        this.lastHeldStepMs = now;
+                    });
+                    const clearHold = () => {
+                        if (this.heldDir && this.heldDir.dx === dx && this.heldDir.dy === dy) {
+                            this.heldDir = null;
+                        }
+                    };
+                    btn.addEventListener("pointerup", clearHold);
+                    btn.addEventListener("pointerleave", clearHold);
+                    btn.addEventListener("pointercancel", clearHold);
+                });
+
+                // 1. Analog Joystick Maya (#z0-joystick-base & #z0-joystick-stick)
+                const joyBase = document.getElementById("z0-joystick-base");
+                const joyStick = document.getElementById("z0-joystick-stick");
+                if (joyBase && joyStick) {
+                    const maxR = 32;
+                    const updateStick = (clientX, clientY, triggerImmediate = false) => {
+                        const rect = joyBase.getBoundingClientRect();
+                        const cx = rect.left + rect.width / 2;
+                        const cy = rect.top + rect.height / 2;
+                        let dx = clientX - cx;
+                        let dy = clientY - cy;
+                        const dist = Math.hypot(dx, dy);
+                        if (dist > maxR) {
+                            dx = (dx / dist) * maxR;
+                            dy = (dy / dist) * maxR;
+                        }
+                        joyStick.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
+                        if (dist > 10) {
+                            this.joyVec = { x: dx / maxR, y: dy / maxR };
+                            if (triggerImmediate && !this.player.isMoving) {
+                                this.lastJoyStepMs = performance.now();
+                                if (Math.abs(dx) > Math.abs(dy)) {
+                                    this.tryStartOneStep(dx > 0 ? 1 : -1, 0);
+                                } else {
+                                    this.tryStartOneStep(0, dy > 0 ? 1 : -1);
+                                }
+                            }
+                        } else {
+                            this.joyVec = { x: 0, y: 0 };
+                        }
+                    };
+
+                    const resetStick = () => {
+                        this.joyActive = false;
+                        this.joyVec = { x: 0, y: 0 };
+                        joyStick.classList.remove("dragging");
+                        joyStick.style.transform = `translate3d(0px, 0px, 0)`;
+                    };
+
+                    joyBase.addEventListener("pointerdown", (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        SoundFX.init();
+                        this.joyActive = true;
+                        joyStick.classList.add("dragging");
+                        if (joyBase.setPointerCapture) {
+                            try { joyBase.setPointerCapture(e.pointerId); } catch (_) {}
+                        }
+                        updateStick(e.clientX, e.clientY, true);
+                    });
+
+                    joyBase.addEventListener("pointermove", (e) => {
+                        if (!this.joyActive) return;
+                        e.preventDefault();
+                        e.stopPropagation();
+                        updateStick(e.clientX, e.clientY, false);
+                    });
+
+                    joyBase.addEventListener("pointerup", resetStick);
+                    joyBase.addEventListener("pointercancel", resetStick);
+                }
+
+                // 2. Leretan (Swipe) atau Klik Terus pada Kanvas Maze (#z0-maze-canvas)
+                if (this.canvas) {
+                    let startX = null;
+                    let startY = null;
+                    this.canvas.addEventListener("pointerdown", (e) => {
+                        startX = e.clientX;
+                        startY = e.clientY;
+                    });
+                    this.canvas.addEventListener("pointerup", (e) => {
+                        if (startX === null || startY === null) return;
+                        const dx = e.clientX - startX;
+                        const dy = e.clientY - startY;
+                        if (Math.hypot(dx, dy) > 18) {
+                            if (Math.abs(dx) > Math.abs(dy)) {
+                                this.setInputDir(dx > 0 ? 1 : -1, 0);
+                            } else {
+                                this.setInputDir(0, dy > 0 ? 1 : -1);
+                            }
+                        } else {
+                            const rect = this.canvas.getBoundingClientRect();
+                            const clickX = ((e.clientX - rect.left) / rect.width) * this.GRID_SIZE;
+                            const clickY = ((e.clientY - rect.top) / rect.height) * this.GRID_SIZE;
+                            const cdx = clickX - (this.player.vx + 0.5);
+                            const cdy = clickY - (this.player.vy + 0.5);
+                            if (Math.abs(cdx) > Math.abs(cdy)) {
+                                this.setInputDir(cdx > 0 ? 1 : -1, 0);
+                            } else {
+                                this.setInputDir(0, cdy > 0 ? 1 : -1);
+                            }
+                        }
+                        startX = null;
+                        startY = null;
+                    });
+                }
+            }
+
+            static isWalkable(gx, gy) {
+                if (gx < 0 || gx >= this.GRID_SIZE || gy < 0 || gy >= this.GRID_SIZE) return false;
+                return this.BASE_MAZE[gy][gx] !== 1;
+            }
+
+            static stepPlayerContinuous(dtNorm, timestamp) {
+                if (this.isFinished) return;
+                const p = this.player;
+
+                if (p.boostTimer > 0) {
+                    p.boostTimer = Math.max(0, p.boostTimer - dtNorm);
+                }
+
+                if (p.isMoving) {
+                    p.progress += p.speed * dtNorm;
+                    p.mouthPhase += 0.30 * dtNorm;
+
+                    if (p.progress >= 1.0) {
+                        p.progress = 0;
+                        p.isMoving = false;
+                        p.vx = p.gx;
+                        p.vy = p.gy;
+
+                        // Tiba di petak baharu — semak Token Unsur Seni atau Pintu TAMAT
+                        this.checkTileInteraction(p.gx, p.gy);
+                        if (this.isFinished) return;
+
+                        // Jika pengguna sudah menekan arah belokan semasa meluncur tadi, jalankan 1 langkah belokan itu
+                        if (p.queuedDir) {
+                            const q = p.queuedDir;
+                            p.queuedDir = null;
+                            this.tryStartOneStep(q.dx, q.dy);
+                        }
+                    } else {
+                        p.vx = p.startX + (p.gx - p.startX) * p.progress;
+                        p.vy = p.startY + (p.gy - p.startY) * p.progress;
+                    }
+                    return;
+                }
+
+                p.vx = p.gx;
+                p.vy = p.gy;
+
+                // Jika pengguna sedang menarik Analog Joystick, melangkah selangkah demi selangkah dengan terkawal (setiap 165ms)
+                if (this.joyActive && Math.hypot(this.joyVec.x, this.joyVec.y) > 0.28) {
+                    if (timestamp - this.lastJoyStepMs >= 165) {
+                        this.lastJoyStepMs = timestamp;
+                        if (Math.abs(this.joyVec.x) > Math.abs(this.joyVec.y)) {
+                            this.tryStartOneStep(this.joyVec.x > 0 ? 1 : -1, 0);
+                        } else {
+                            this.tryStartOneStep(0, this.joyVec.y > 0 ? 1 : -1);
+                        }
+                    }
+                    return;
+                }
+
+                // Jika pengguna menahan (hold > 240ms) butang D-Pad, melangkah selangkah demi selangkah (setiap 165ms)
+                if (this.heldDir && (timestamp - this.heldSinceMs >= 240) && (timestamp - this.lastHeldStepMs >= 165)) {
+                    this.lastHeldStepMs = timestamp;
+                    this.tryStartOneStep(this.heldDir.dx, this.heldDir.dy);
+                }
+            }
+
+            static checkTileInteraction(gx, gy) {
+                const tile = this.BASE_MAZE[gy][gx];
+                if (tile >= 10 && this.ELEMENT_INFO[tile]) {
+                    const info = this.ELEMENT_INFO[tile];
+                    const tokenKey = `${gy},${gx}`;
+                    const isFirstTime = !this.collectedTokens.has(tokenKey);
+                    if (isFirstTime) {
+                        this.collectedTokens.add(tokenKey);
+                        this.score += 100;
+                    } else {
+                        this.score += 10;
+                    }
+                    SoundFX.playElementSound(tile);
+
+                    this.showElementBanner(tile, info);
+                    this.highlightLegendCard(info.cat);
+                    this.updateHUD();
+
+                    // Kesan Khas Mengikut Kategori Unsur Seni
+                    if (tile >= 10 && tile <= 12) {
+                        this.player.boostTimer = 95;
+                        this.spawnBurst(gx, gy, info.color, 16);
+                    } else if (tile >= 20 && tile <= 23) {
+                        const flashEl = document.getElementById("z0-color-flash");
+                        if (flashEl && info.flash) {
+                            flashEl.style.backgroundColor = info.flash;
+                            flashEl.style.opacity = "1";
+                            setTimeout(() => { flashEl.style.opacity = "0"; }, 450);
+                        }
+                        this.spawnBurst(gx, gy, info.color, 22);
+                    } else if (tile >= 30 && tile <= 34) {
+                        this.floatingShapes.push({
+                            gx,
+                            gy,
+                            shape: info.shape,
+                            color: info.color,
+                            scale: 0.25,
+                            alpha: 1.0
+                        });
+                        this.spawnBurst(gx, gy, info.color, 14);
+                    } else if (tile === 40) {
+                        const shell = document.getElementById("z0-canvas-shell");
+                        if (shell) {
+                            shell.classList.remove("z0-shake-active");
+                            void shell.offsetWidth;
+                            shell.classList.add("z0-shake-active");
+                            setTimeout(() => shell.classList.remove("z0-shake-active"), 450);
+                        }
+                        this.spawnBurst(gx, gy, "#FF6D00", 18);
+                    } else if (tile === 41) {
+                        this.spawnSoftClouds(gx, gy);
+                    }
+                } else if (tile === 3) {
+                    // Petak TAMAT (7,7) — Hanya terbuka selepas semua 16 Token Unsur Seni dikumpul
+                    if (this.collectedTokens.size >= this.TOTAL_ELEMENTS) {
+                        this.triggerVictory();
+                    } else {
+                        const baki = this.TOTAL_ELEMENTS - this.collectedTokens.size;
+                        this.showCustomBanner(
+                            "PINTU TAMAT TERKUNCI!",
+                            `Kumpulkan lagi ${baki} Token Unsur Seni (${this.collectedTokens.size}/${this.TOTAL_ELEMENTS}) untuk membuka pintu TAMAT!`,
+                            "#FFE600"
+                        );
+                        SoundFX.playWorldAction(2);
+                    }
+                }
+            }
+
+            static highlightLegendCard(cat) {
+                const mapId = {
+                    GARISAN: "z0-leg-garisan",
+                    WARNA: "z0-leg-warna",
+                    BENTUK: "z0-leg-bentuk",
+                    JALINAN: "z0-leg-jalinan"
+                };
+                const el = document.getElementById(mapId[cat]);
+                if (el) {
+                    el.classList.add("discovered");
+                }
+            }
+
+            static getCategorySvg(cat, color) {
+                if (cat === "GARISAN") {
+                    return `<svg viewBox="0 0 28 28" width="24" height="24"><polyline points="2,20 9,7 16,20 25,6" fill="none" stroke="${color}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+                } else if (cat === "WARNA") {
+                    return `<svg viewBox="0 0 28 28" width="24" height="24"><circle cx="14" cy="14" r="10" fill="${color}" stroke="#FFF" stroke-width="2.2"/></svg>`;
+                } else if (cat === "BENTUK") {
+                    return `<svg viewBox="0 0 28 28" width="24" height="24"><polygon points="14,3 25,23 3,23" fill="none" stroke="${color}" stroke-width="2.8" stroke-linejoin="round"/></svg>`;
+                } else {
+                    return `<svg viewBox="0 0 28 28" width="24" height="24"><path d="M3,10 Q9,4 14,10 T25,10 M3,18 Q9,12 14,18 T25,18" fill="none" stroke="${color}" stroke-width="2.8" stroke-linecap="round"/></svg>`;
+                }
+            }
+
+            static showElementBanner(tile, info) {
+                const banner = document.getElementById("z0-element-banner");
+                const iconBox = document.getElementById("z0-banner-svg");
+                const titleEl = document.getElementById("z0-banner-title");
+                const descEl = document.getElementById("z0-banner-desc");
+                if (!banner || !titleEl || !descEl) return;
+
+                if (iconBox) iconBox.innerHTML = this.getCategorySvg(info.cat, info.color);
+                titleEl.textContent = info.title;
+                titleEl.style.color = info.color;
+                descEl.textContent = info.desc;
+                banner.classList.add("show");
+
+                if (this.bannerTimeout) clearTimeout(this.bannerTimeout);
+                this.bannerTimeout = setTimeout(() => {
+                    banner.classList.remove("show");
+                }, 2600);
+            }
+
+            static showCustomBanner(title, desc, color) {
+                const banner = document.getElementById("z0-element-banner");
+                const iconBox = document.getElementById("z0-banner-svg");
+                const titleEl = document.getElementById("z0-banner-title");
+                const descEl = document.getElementById("z0-banner-desc");
+                if (!banner || !titleEl || !descEl) return;
+
+                if (iconBox) {
+                    iconBox.innerHTML = `<svg viewBox="0 0 28 28" width="24" height="24"><rect x="5" y="12" width="18" height="13" rx="3" fill="none" stroke="${color}" stroke-width="2.5"/><path d="M9,12 V8 A5,5 0 0,1 19,8 V12" fill="none" stroke="${color}" stroke-width="2.5"/></svg>`;
+                }
+                titleEl.textContent = title;
+                titleEl.style.color = color;
+                descEl.textContent = desc;
+                banner.classList.add("show");
+
+                if (this.bannerTimeout) clearTimeout(this.bannerTimeout);
+                this.bannerTimeout = setTimeout(() => {
+                    banner.classList.remove("show");
+                }, 2600);
+            }
+
+            static triggerVictory() {
+                this.isFinished = true;
+                const stars = this.getStarCount();
+                this.score += 300 + stars * 100;
+                this.updateHUD();
+                SoundFX.playWin();
+
+                const starsBox = document.getElementById("z0-finish-stars");
+                if (starsBox) {
+                    starsBox.innerHTML = this.renderStarsSvg(stars, 32);
+                }
+                const statsEl = document.getElementById("z0-finish-stats");
+                if (statsEl) {
+                    statsEl.textContent = `MARKAH: ${this.score} PTS • MASA: ${this.formatTime(this.elapsedSec)} • TOKEN: 16/16`;
+                }
+
+                const modal = document.getElementById("z0-finish-modal");
+                if (modal) modal.classList.add("show");
+            }
+
+            static spawnBurst(gx, gy, color, count = 16) {
+                const cx = (gx + 0.5) * this.TILE_SIZE;
+                const cy = (gy + 0.5) * this.TILE_SIZE;
+                for (let i = 0; i < count; i++) {
+                    const ang = (Math.PI * 2 * i) / count + Math.random() * 0.3;
+                    const spd = 1.6 + Math.random() * 3.2;
+                    this.particles.push({
+                        x: cx,
+                        y: cy,
+                        vx: Math.cos(ang) * spd,
+                        vy: Math.sin(ang) * spd,
+                        r: 3 + Math.random() * 4,
+                        color,
+                        alpha: 1.0,
+                        soft: false
+                    });
+                }
+            }
+
+            static spawnSoftClouds(gx, gy) {
+                const cx = (gx + 0.5) * this.TILE_SIZE;
+                const cy = (gy + 0.5) * this.TILE_SIZE;
+                for (let i = 0; i < 14; i++) {
+                    this.particles.push({
+                        x: cx + (Math.random() - 0.5) * 26,
+                        y: cy + (Math.random() - 0.5) * 26,
+                        vx: (Math.random() - 0.5) * 1.1,
+                        vy: -0.7 - Math.random() * 1.2,
+                        r: 7 + Math.random() * 7,
+                        color: "rgba(243, 229, 245, 0.92)",
+                        alpha: 1.0,
+                        soft: true
+                    });
+                }
+            }
+
+            static stepGhosts(dtNorm, timestamp) {
+                if (this.isFinished) return;
+                const dirs = [
+                    { x: 1, y: 0 },
+                    { x: -1, y: 0 },
+                    { x: 0, y: 1 },
+                    { x: 0, y: -1 }
+                ];
+
+                for (let i = 0; i < this.ghosts.length; i++) {
+                    const g = this.ghosts[i];
+                    g.progress += g.speed * dtNorm;
+                    while (g.progress >= 1.0) {
+                        g.progress -= 1.0;
+                        g.col += g.dirX;
+                        g.row += g.dirY;
+
+                        const valid = [];
+                        for (let d of dirs) {
+                            if (d.x === -g.dirX && d.y === -g.dirY) continue;
+                            const nc = g.col + d.x;
+                            const nr = g.row + d.y;
+                            if (this.isWalkable(nc, nr) && this.BASE_MAZE[nr][nc] !== 2 && this.BASE_MAZE[nr][nc] !== 3) {
+                                valid.push(d);
+                            }
+                        }
+                        if (valid.length === 0) {
+                            const backC = g.col - g.dirX;
+                            const backR = g.row - g.dirY;
+                            if (this.isWalkable(backC, backR)) {
+                                g.dirX = -g.dirX;
+                                g.dirY = -g.dirY;
+                            } else {
+                                g.dirX = 0;
+                                g.dirY = 0;
+                            }
+                        } else {
+                            const pick = valid[Math.floor(Math.random() * valid.length)];
+                            g.dirX = pick.x;
+                            g.dirY = pick.y;
+                        }
+                    }
+
+                    // Semak pelanggaran dengan Pac-Man
+                    if (timestamp > this.invincibleUntil) {
+                        const gx = g.col + g.dirX * g.progress;
+                        const gy = g.row + g.dirY * g.progress;
+                        const dist = Math.hypot(this.player.vx - gx, this.player.vy - gy);
+                        if (dist < 0.62) {
+                            this.lives = Math.max(1, this.lives - 1);
+                            this.invincibleUntil = timestamp + 2200;
+                            this.player.gx = 1;
+                            this.player.gy = 1;
+                            this.player.startX = 1;
+                            this.player.startY = 1;
+                            this.player.vx = 1;
+                            this.player.vy = 1;
+                            this.player.isMoving = false;
+                            this.player.queuedDir = null;
+                            this.player.progress = 0;
+                            this.player.trail = [];
+                            SoundFX.playLose();
+                            this.updateHUD();
+                            this.showCustomBanner(
+                                "TERSEREMPAK HANTU PERONDA!",
+                                "Pac-Man kembali ke petak MULA. Teruskan mengumpul ke semua 16 Token Unsur Seni!",
+                                "#FF1744"
+                            );
+                        }
+                    }
+                }
+            }
+
+            static updateAndDraw(dtNorm, timestamp) {
+                if (!this.ctx || !this.canvas) return;
+
+                if (!this.isFinished) {
+                    const newSec = Math.floor((performance.now() - this.startTimeMs) / 1000);
+                    if (newSec !== this.elapsedSec) {
+                        this.elapsedSec = newSec;
+                        this.updateHUD();
+                    }
+                }
+
+                this.stepPlayerContinuous(dtNorm, timestamp);
+                this.stepGhosts(dtNorm, timestamp);
+
+                const ctx = this.ctx;
+                const T = this.TILE_SIZE;
+                ctx.fillStyle = "#040616";
+                ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // 1. Lukis Grid Maze, Dinding Neon Biru Berkembar & 16 Token Unsur Seni
+                for (let r = 0; r < this.GRID_SIZE; r++) {
+                    for (let c = 0; c < this.GRID_SIZE; c++) {
+                        const tile = this.BASE_MAZE[r][c];
+                        const x = c * T;
+                        const y = r * T;
+                        const cx = x + T / 2;
+                        const cy = y + T / 2;
+
+                        if (tile === 1) {
+                            ctx.fillStyle = "#0B1142";
+                            ctx.fillRect(x + 2, y + 2, T - 4, T - 4);
+                            ctx.strokeStyle = "#2121DE";
+                            ctx.lineWidth = 2.5;
+                            ctx.strokeRect(x + 3.5, y + 3.5, T - 7, T - 7);
+                            ctx.strokeStyle = "rgba(0, 229, 255, 0.35)";
+                            ctx.lineWidth = 1;
+                            ctx.strokeRect(x + 7, y + 7, T - 14, T - 14);
+                        } else {
+                            ctx.strokeStyle = "rgba(33, 33, 222, 0.14)";
+                            ctx.lineWidth = 1;
+                            ctx.strokeRect(x, y, T, T);
+
+                            if (this.dotsGrid[r] && this.dotsGrid[r][c] === 1) {
+                                ctx.fillStyle = "#FFB8AE";
+                                ctx.fillRect(cx - 2.5, cy - 2.5, 5, 5);
+                            }
+
+                            this.drawUnsurTile(ctx, tile, r, c, x, y, T, timestamp);
+                        }
+                    }
+                }
+
+                // 2. Lukis Jejak Pecutan (Trail) Pac-Man
+                for (let i = this.player.trail.length - 1; i >= 0; i--) {
+                    const tr = this.player.trail[i];
+                    tr.alpha -= 0.04 * dtNorm;
+                    if (tr.alpha <= 0) {
+                        this.player.trail.splice(i, 1);
+                        continue;
+                    }
+                    ctx.save();
+                    ctx.globalAlpha = Math.max(0, tr.alpha * 0.5);
+                    ctx.fillStyle = "#00E5FF";
+                    ctx.beginPath();
+                    ctx.arc((tr.x + 0.5) * T, (tr.y + 0.5) * T, T * 0.24, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+
+                // 3. Lukis Watak Pac-Man Sebenar
+                const pacX = (this.player.vx + 0.5) * T;
+                const pacY = (this.player.vy + 0.5) * T;
+                const pacAngle = Math.atan2(this.player.facingY, this.player.facingX);
+                const mouthFrac = (!this.player.isMoving)
+                    ? 0.32
+                    : (0.12 + Math.abs(Math.sin(this.player.mouthPhase)) * 0.78);
+                const blinkHide = (timestamp < this.invincibleUntil) && (Math.floor(timestamp / 90) % 2 === 0);
+                if (!blinkHide) {
+                    PacManAttractWallpaper.drawRealPacMan(ctx, pacX, pacY, T * 0.39, pacAngle, mouthFrac);
+                }
+
+                // 4. Lukis Hantu Peronda (Blinky & Pinky)
+                for (let i = 0; i < this.ghosts.length; i++) {
+                    const g = this.ghosts[i];
+                    const gx = (g.col + g.dirX * g.progress + 0.5) * T;
+                    const gy = (g.row + g.dirY * g.progress + 0.5) * T;
+                    PacManAttractWallpaper.drawRealGhost(ctx, gx, gy, T * 0.38, g.color, g.dirX, g.dirY, timestamp, 0, false);
+                }
+
+                // 5. Lukis Popup Hologram Rupa 2D / Bentuk 3D
+                for (let i = this.floatingShapes.length - 1; i >= 0; i--) {
+                    const fs = this.floatingShapes[i];
+                    fs.scale += 0.04 * dtNorm;
+                    fs.alpha -= 0.024 * dtNorm;
+                    if (fs.alpha <= 0) {
+                        this.floatingShapes.splice(i, 1);
+                        continue;
+                    }
+                    this.drawFloatingShapePopup(ctx, fs);
+                }
+
+                // 6. Lukis Partikel Warna & Jalinan
+                for (let i = this.particles.length - 1; i >= 0; i--) {
+                    const p = this.particles[i];
+                    p.x += p.vx * dtNorm;
+                    p.y += p.vy * dtNorm;
+                    p.alpha -= (p.soft ? 0.018 : 0.032) * dtNorm;
+                    if (p.alpha <= 0) {
+                        this.particles.splice(i, 1);
+                        continue;
+                    }
+                    ctx.save();
+                    ctx.globalAlpha = Math.max(0, p.alpha);
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            static drawUnsurTile(ctx, tile, r, c, x, y, T, timestamp) {
+                if (tile === 0 || tile === 1) return;
+                const cx = x + T / 2;
+                const cy = y + T / 2;
+                const visited = this.collectedTokens.has(`${r},${c}`);
+
+                ctx.save();
+
+                if (visited && tile >= 10) {
+                    ctx.fillStyle = "rgba(80, 250, 123, 0.16)";
+                    ctx.fillRect(x + 2, y + 2, T - 4, T - 4);
+                }
+
+                if (tile === 2) {
+                    ctx.fillStyle = "rgba(0, 230, 118, 0.22)";
+                    ctx.fillRect(x + 3, y + 3, T - 6, T - 6);
+                    ctx.strokeStyle = "#00E676";
+                    ctx.lineWidth = 2;
+                    ctx.strokeRect(x + 3, y + 3, T - 6, T - 6);
+                    ctx.fillStyle = "#50FA7B";
+                    ctx.font = "bold 7.5px 'Press Start 2P', monospace";
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+                    ctx.fillText("MULA", cx, cy);
+                } else if (tile === 3) {
+                    const unlocked = this.collectedTokens.size >= this.TOTAL_ELEMENTS;
+                    const pulse = 0.65 + Math.abs(Math.sin(timestamp * 0.006)) * 0.35;
+                    ctx.fillStyle = unlocked ? `rgba(80, 250, 123, ${0.32 * pulse})` : "rgba(255, 230, 0, 0.18)";
+                    ctx.fillRect(x + 2, y + 2, T - 4, T - 4);
+                    ctx.strokeStyle = unlocked ? "#50FA7B" : "#FFE600";
+                    ctx.lineWidth = unlocked ? 3 : 2;
+                    ctx.strokeRect(x + 3, y + 3, T - 6, T - 6);
+
+                    ctx.fillStyle = unlocked ? "#50FA7B" : "#FFE600";
+                    ctx.font = "bold 6.8px 'Press Start 2P', monospace";
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+                    ctx.fillText("TAMAT", cx, cy - 4);
+                    ctx.font = "bold 6px 'Press Start 2P', monospace";
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.fillText(unlocked ? "BUKA!" : `${this.collectedTokens.size}/${this.TOTAL_ELEMENTS}`, cx, cy + 7);
+                } else if (tile === 10) {
+                    ctx.strokeStyle = "#FFE600";
+                    ctx.lineWidth = 3;
+                    ctx.lineCap = "round";
+                    ctx.lineJoin = "round";
+                    ctx.beginPath();
+                    ctx.moveTo(x + 6, cy + 7);
+                    ctx.lineTo(x + 14, cy - 7);
+                    ctx.lineTo(x + 24, cy + 7);
+                    ctx.lineTo(x + 34, cy - 7);
+                    ctx.stroke();
+                } else if (tile === 11) {
+                    ctx.strokeStyle = "#00E5FF";
+                    ctx.lineWidth = 3;
+                    ctx.lineCap = "round";
+                    ctx.beginPath();
+                    ctx.moveTo(x + 5, cy);
+                    ctx.bezierCurveTo(x + 13, cy - 12, x + 27, cy + 12, x + 35, cy);
+                    ctx.stroke();
+                } else if (tile === 12) {
+                    ctx.strokeStyle = "#50FA7B";
+                    ctx.lineWidth = 2.6;
+                    ctx.lineCap = "round";
+                    ctx.beginPath();
+                    for (let a = 0; a < Math.PI * 3.6; a += 0.25) {
+                        const sr = 1.2 * a;
+                        const sx = cx + Math.cos(a) * sr;
+                        const sy = cy + Math.sin(a) * sr;
+                        if (a === 0) ctx.moveTo(sx, sy);
+                        else ctx.lineTo(sx, sy);
+                    }
+                    ctx.stroke();
+                } else if (tile >= 20 && tile <= 23) {
+                    const colMap = { 20: "#FF1744", 21: "#FFE600", 22: "#00E676", 23: "#2979FF" };
+                    const hex = colMap[tile];
+                    ctx.fillStyle = hex;
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, T * 0.28, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.lineWidth = 2;
+                    ctx.strokeStyle = "#FFFFFF";
+                    ctx.stroke();
+
+                    ctx.fillStyle = "rgba(255,255,255,0.45)";
+                    ctx.beginPath();
+                    ctx.arc(cx - 3.5, cy - 3.5, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                } else if (tile === 30) {
+                    ctx.strokeStyle = "#FF9100";
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, 11, 0, Math.PI * 2);
+                    ctx.stroke();
+                } else if (tile === 31) {
+                    ctx.strokeStyle = "#00E676";
+                    ctx.lineWidth = 3;
+                    ctx.lineJoin = "round";
+                    ctx.beginPath();
+                    ctx.moveTo(cx, y + 8);
+                    ctx.lineTo(x + 9, y + 31);
+                    ctx.lineTo(x + 31, y + 31);
+                    ctx.closePath();
+                    ctx.stroke();
+                } else if (tile === 32) {
+                    ctx.strokeStyle = "#00E5FF";
+                    ctx.lineWidth = 3;
+                    ctx.strokeRect(x + 9, y + 9, 22, 22);
+                } else if (tile === 33) {
+                    ctx.strokeStyle = "#E040FB";
+                    ctx.lineWidth = 2.2;
+                    ctx.strokeRect(x + 8, y + 13, 16, 16);
+                    ctx.strokeRect(x + 15, y + 7, 16, 16);
+                    ctx.beginPath();
+                    ctx.moveTo(x + 8, y + 13); ctx.lineTo(x + 15, y + 7);
+                    ctx.moveTo(x + 24, y + 13); ctx.lineTo(x + 31, y + 7);
+                    ctx.moveTo(x + 8, y + 29); ctx.lineTo(x + 15, y + 23);
+                    ctx.moveTo(x + 24, y + 29); ctx.lineTo(x + 31, y + 23);
+                    ctx.stroke();
+                } else if (tile === 34) {
+                    const grad = ctx.createRadialGradient(cx - 4, cy - 4, 2, cx, cy, 12);
+                    grad.addColorStop(0, "#FF80AB");
+                    grad.addColorStop(0.55, "#F50057");
+                    grad.addColorStop(1, "#880E4F");
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, 12, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.strokeStyle = "#FFFFFF";
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                } else if (tile === 40) {
+                    ctx.fillStyle = "#4E342E";
+                    ctx.fillRect(x + 6, y + 6, T - 12, T - 12);
+                    ctx.strokeStyle = "#FF6D00";
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(x + 8, y + 14); ctx.lineTo(x + 14, y + 9); ctx.lineTo(x + 20, y + 15); ctx.lineTo(x + 26, y + 9); ctx.lineTo(x + 32, y + 14);
+                    ctx.moveTo(x + 8, y + 26); ctx.lineTo(x + 14, y + 21); ctx.lineTo(x + 20, y + 27); ctx.lineTo(x + 26, y + 21); ctx.lineTo(x + 32, y + 26);
+                    ctx.stroke();
+                } else if (tile === 41) {
+                    ctx.fillStyle = "rgba(234, 128, 252, 0.25)";
+                    ctx.fillRect(x + 6, y + 6, T - 12, T - 12);
+                    ctx.fillStyle = "#F3E5F5";
+                    [[cx - 6, cy + 2, 6], [cx + 5, cy + 2, 6], [cx, cy - 3, 7]].forEach(([bx, by, br]) => {
+                        ctx.beginPath();
+                        ctx.arc(bx, by, br, 0, Math.PI * 2);
+                        ctx.fill();
+                    });
+                }
+
+                if (visited && tile >= 10) {
+                    ctx.fillStyle = "#50FA7B";
+                    ctx.beginPath();
+                    ctx.arc(x + T - 7, y + 7, 4.5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                ctx.restore();
+            }
+
+            static drawFloatingShapePopup(ctx, fs) {
+                const T = this.TILE_SIZE;
+                const cx = (fs.gx + 0.5) * T;
+                const cy = (fs.gy + 0.5) * T;
+
+                ctx.save();
+                ctx.translate(cx, cy);
+                ctx.scale(fs.scale, fs.scale);
+                ctx.globalAlpha = Math.max(0, fs.alpha);
+                ctx.strokeStyle = fs.color;
+                ctx.lineWidth = 3.5;
+
+                if (fs.shape === "circle") {
+                    ctx.beginPath();
+                    ctx.arc(0, 0, 20, 0, Math.PI * 2);
+                    ctx.stroke();
+                } else if (fs.shape === "triangle") {
+                    ctx.beginPath();
+                    ctx.moveTo(0, -22);
+                    ctx.lineTo(-20, 16);
+                    ctx.lineTo(20, 16);
+                    ctx.closePath();
+                    ctx.stroke();
+                } else if (fs.shape === "square") {
+                    ctx.strokeRect(-18, -18, 36, 36);
+                } else if (fs.shape === "cube") {
+                    ctx.strokeRect(-16, -8, 24, 24);
+                    ctx.strokeRect(-6, -18, 24, 24);
+                    ctx.beginPath();
+                    ctx.moveTo(-16, -8); ctx.lineTo(-6, -18);
+                    ctx.moveTo(8, -8); ctx.lineTo(18, -18);
+                    ctx.moveTo(-16, 16); ctx.lineTo(-6, 6);
+                    ctx.moveTo(8, 16); ctx.lineTo(18, 6);
+                    ctx.stroke();
+                } else if (fs.shape === "sphere") {
+                    ctx.beginPath();
+                    ctx.arc(0, 0, 20, 0, Math.PI * 2);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, 20, 8, 0, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+                ctx.restore();
+            }
+        }
+
+        const updateFullscreenButtonLabel = () => {
+            const lbl = document.getElementById('fullscreen-label');
+            if (!lbl) return;
+            const isFs = document.fullscreenElement || document.webkitFullscreenElement;
+            lbl.textContent = isFs ? "KELUAR SKRIN PENUH" : "SKRIN PENUH";
+        };
+        document.addEventListener('fullscreenchange', updateFullscreenButtonLabel);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenButtonLabel);
+
         window.addEventListener('resize', () => App.resizeCanvas());
         window.addEventListener('orientationchange', () => setTimeout(() => App.resizeCanvas(), 120));
         window.onload = () => App.init();
         window.App = App;
+        window.ArtTheatreZ4 = ArtTheatreZ4;
+        window.SetInduksiMazeZ0 = SetInduksiMazeZ0;
     </script>
 </body>
 </html>
