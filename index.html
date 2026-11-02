@@ -2335,6 +2335,400 @@
             }
         }
 
+
+        /* =========================================================
+           NAIK TARAF PENTAS KAMERA APRESIASI LUAS & MODAL SIMPAN GALERI/FAIL
+           ========================================================= */
+        .z4-stage.open .z4-curtain.left {
+            transform: translateX(-96%) !important;
+            pointer-events: none;
+        }
+        .z4-stage.open .z4-curtain.right {
+            transform: translateX(96%) !important;
+            pointer-events: none;
+        }
+        .z4-content {
+            max-width: min(1720px, 98vw) !important;
+            width: 98vw !important;
+            padding: 6px clamp(8px, 1.4vw, 18px) 12px !important;
+        }
+        .z4-main-grid {
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 405px) !important;
+            gap: clamp(10px, 1.6vw, 20px) !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        .z4-stage.open .z4-stage-col {
+            min-height: 72dvh !important;
+            height: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: flex-end !important;
+            align-items: center !important;
+            padding-bottom: 6px !important;
+        }
+        .z4-stage.open .z4-cam-stage-frame {
+            margin-top: 4px;
+            margin-bottom: auto !important;
+            padding: 4px 12px !important;
+            background: rgba(10, 6, 24, 0.45) !important;
+            border: 2px solid rgba(255, 230, 0, 0.75) !important;
+            border-radius: 20px !important;
+        }
+        .z4-stage.open #z4-stageTitle {
+            font-size: clamp(0.68rem, 1.25vw, 0.95rem) !important;
+            margin: 4px 0 2px !important;
+            background: rgba(10, 6, 22, 0.68);
+            padding: 5px 14px;
+            border-radius: 14px;
+            border: 1.5px solid rgba(255, 230, 0, 0.5);
+        }
+        .z4-stage.open #z4-stageText {
+            font-size: clamp(0.78rem, 1.1vw, 0.96rem) !important;
+            margin: 0 0 4px !important;
+            background: rgba(10, 6, 22, 0.62);
+            padding: 3px 12px;
+            border-radius: 10px;
+        }
+        .z4-applause {
+            width: min(100%, 820px) !important;
+            min-height: clamp(44px, 6.5vh, 62px) !important;
+            padding: clamp(8px, 1.1vh, 12px) clamp(14px, 2vw, 24px) !important;
+            margin: 4px auto 0 !important;
+            background: rgba(12, 6, 24, 0.88) !important;
+            border: 3px solid var(--pac-yellow) !important;
+        }
+
+        /* Apabila LIPAT PANEL diaktifkan: 100% Skrin Kamera Luas Tanpa Sebarang Kotak Menghalang Wajah! */
+        .z4-Main-drawer-collapsed.z4-main-grid {
+            grid-template-columns: 1fr !important;
+        }
+        .z4-Main-drawer-collapsed .z4-cam-stage-frame,
+        .z4-Main-drawer-collapsed #z4-stageTitle,
+        .z4-Main-drawer-collapsed #z4-stageText {
+            display: none !important;
+        }
+        .z4-Main-drawer-collapsed .z4-stage-col {
+            min-height: 78dvh !important;
+            justify-content: flex-end !important;
+        }
+        .z4-Main-drawer-collapsed .z4-applause {
+            width: min(94vw, 920px) !important;
+            background: rgba(10, 5, 20, 0.82) !important;
+        }
+
+        @media (max-width: 900px) {
+            .z4-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 8px !important;
+            }
+            .z4-stage.open .z4-stage-col {
+                min-height: 36dvh !important;
+            }
+            .z4-Main-drawer-collapsed .z4-stage-col {
+                min-height: 76dvh !important;
+            }
+            .z4-panel {
+                max-height: 40dvh !important;
+            }
+        }
+
+        /* Modal Pratonton & Simpan Gambar ke Galeri / Fail (iPad, Telefon & Laptop) */
+        .z4-photo-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(4, 6, 20, 0.88);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 120;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            pointer-events: auto;
+        }
+        .z4-photo-modal.show {
+            display: flex;
+        }
+        .z4-photo-modal-box {
+            width: min(640px, 95vw);
+            max-height: 92dvh;
+            overflow-y: auto;
+            background: linear-gradient(180deg, #151C58 0%, #090C2C 100%);
+            border: 4px solid var(--pac-yellow);
+            border-radius: 22px;
+            padding: clamp(14px, 2vh, 22px);
+            text-align: center;
+            color: #FFFFFF;
+            box-shadow: 0 0 40px rgba(255, 230, 0, 0.55), 0 10px 0 #000;
+        }
+        #z4-photo-preview-img {
+            width: 100%;
+            max-height: 52dvh;
+            object-fit: contain;
+            border-radius: 14px;
+            border: 3px solid var(--maze-neon);
+            background: #040616;
+            margin: 8px auto 10px;
+            display: block;
+            user-select: auto !important;
+            -webkit-user-select: auto !important;
+            -webkit-touch-callout: default !important;
+            pointer-events: auto;
+        }
+        .z4-photo-status-msg {
+            font-size: 0.82rem;
+            color: #50FA7B;
+            font-weight: 700;
+            margin: 4px 0 10px;
+            min-height: 20px;
+        }
+
+    
+        /* =========================================================
+           KEMAS KINI KOTAK JOM BERIKAN APRESIASI: SISTEMATIK, KEMAS &
+           100% DI DALAM KOTAK TANPA SKROL (TELEFON, IPAD & LAPTOP)
+           ========================================================= */
+        .z4-content {
+            overflow: hidden !important;
+            padding: clamp(6px, 1vh, 14px) clamp(10px, 1.8vw, 22px) clamp(8px, 1.4vh, 16px) !important;
+            box-sizing: border-box !important;
+        }
+        .z4-right-drawer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+        }
+        .z4-panel {
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            max-height: none !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+            padding: clamp(10px, 1.5vh, 15px) clamp(12px, 1.5vw, 16px) !important;
+            border-radius: 18px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: clamp(6px, 1vh, 10px) !important;
+        }
+        .z4-panel.hidden {
+            display: none !important;
+        }
+        .z4-panel h2 {
+            font-size: clamp(0.64rem, 1.05vw, 0.86rem) !important;
+            margin: 0 !important;
+            padding-bottom: clamp(5px, 0.8vh, 8px) !important;
+            border-bottom: 2px solid rgba(255, 230, 0, 0.28) !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            text-align: center !important;
+        }
+        /* Grid 2x2 Sistematik untuk 4 Butang Kategori */
+        .z4-categories-row {
+            display: grid !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: clamp(5px, 0.8vh, 7px) !important;
+            margin: 0 !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        .z4-category {
+            width: 100% !important;
+            min-width: 0 !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            padding: clamp(6px, 0.85vh, 8px) 6px !important;
+            font-size: clamp(0.72rem, 0.98vw, 0.84rem) !important;
+            line-height: 1.2 !important;
+            border-radius: 12px !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            margin: 0 !important;
+            box-shadow: 0 3px 0 #000 !important;
+        }
+        .z4-category .z4-svg-icon {
+            width: 15px !important;
+            height: 15px !important;
+            flex-shrink: 0 !important;
+        }
+        /* Senarai 3 Ayat Apresiasi Tersusun Kemas */
+        #z4-answers {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: clamp(5px, 0.75vh, 7px) !important;
+            margin: 0 !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        .z4-answer {
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+            margin: 0 !important;
+            padding: clamp(7px, 0.95vh, 9px) clamp(9px, 1vw, 12px) !important;
+            font-size: clamp(0.76rem, 1vw, 0.88rem) !important;
+            line-height: 1.28 !important;
+            border-radius: 11px !important;
+            box-shadow: 0 3px 0 #000 !important;
+        }
+        .z4-answer .z4-svg-icon {
+            width: 16px !important;
+            height: 16px !important;
+            flex-shrink: 0 !important;
+        }
+        /* Baris Butang Tindakan Bawah: Grid 2 Lajur Sama Lebar & 100% Di Dalam Kotak! */
+        .z4-panel-actions {
+            display: grid !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 8px !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            margin: 2px 0 0 !important;
+            padding-top: clamp(4px, 0.6vh, 6px) !important;
+            border-top: 1.5px solid rgba(255, 255, 255, 0.14) !important;
+        }
+        .z4-panel-actions .z4-btn {
+            width: 100% !important;
+            min-width: 0 !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            margin: 0 !important;
+            padding: clamp(7px, 0.95vh, 9px) 6px !important;
+            font-family: 'Fredoka', sans-serif !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.3px !important;
+            font-size: clamp(0.72rem, 0.95vw, 0.82rem) !important;
+            line-height: 1.15 !important;
+            border-radius: 12px !important;
+            white-space: normal !important;
+            text-align: center !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 5px !important;
+            box-shadow: 0 3px 0 #000 !important;
+        }
+        .z4-panel-actions .z4-btn .z4-svg-icon {
+            width: 14px !important;
+            height: 14px !important;
+            flex-shrink: 0 !important;
+        }
+
+        /* Susun Atur Tablet Potret & Telefon Pintar (<= 900px): Atas Kamera, Bawah Panel Apresiasi Kemas */
+        @media (max-width: 900px) {
+            .z4-theatre-header {
+                margin-top: 36px !important;
+                padding: 5px 10px !important;
+                gap: 5px !important;
+            }
+            .z4-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 6px !important;
+            }
+            .z4-stage.open .z4-stage-col {
+                min-height: clamp(140px, 32dvh, 280px) !important;
+                padding-bottom: 2px !important;
+            }
+            .z4-stage.open #z4-stageTitle,
+            .z4-stage.open #z4-stageText {
+                display: none !important;
+            }
+            .z4-applause {
+                min-height: 36px !important;
+                padding: 5px 12px !important;
+                font-size: clamp(0.76rem, 2vw, 0.92rem) !important;
+            }
+            .z4-panel {
+                padding: 8px 10px !important;
+                gap: 5px !important;
+            }
+            .z4-categories-row {
+                grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+                gap: 5px !important;
+            }
+            .z4-category {
+                padding: 5px 4px !important;
+                font-size: clamp(0.65rem, 1.7vw, 0.78rem) !important;
+                gap: 3px !important;
+            }
+            #z4-answers {
+                gap: 4px !important;
+            }
+            .z4-answer {
+                padding: 5px 8px !important;
+                font-size: clamp(0.72rem, 1.9vw, 0.84rem) !important;
+            }
+            .z4-panel-actions .z4-btn {
+                padding: 6px 6px !important;
+                font-size: clamp(0.7rem, 1.8vw, 0.8rem) !important;
+            }
+        }
+
+        /* Telefon Pintar Skrin Sempit (<= 520px): Kategori Grid 2x2 Supaya Tidak Sempit */
+        @media (max-width: 520px) {
+            .z4-categories-row {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
+            .z4-stage.open .z4-stage-col {
+                min-height: clamp(125px, 28dvh, 210px) !important;
+            }
+        }
+
+        /* Landskap Telefon Pintar / Skrin Rendah (max-height: 540px): 2 Lajur Sebelah-Menyebelah Tanpa Skrol */
+        @media (max-height: 540px) {
+            .z4-theatre-header {
+                margin-top: 28px !important;
+                padding: 4px 10px !important;
+            }
+            .z4-main-grid {
+                grid-template-columns: 1.12fr 0.88fr !important;
+                gap: 8px !important;
+            }
+            .z4-stage.open .z4-stage-col {
+                min-height: 60dvh !important;
+            }
+            .z4-stage.open #z4-stageTitle,
+            .z4-stage.open #z4-stageText,
+            .z4-stage.open .z4-cam-stage-frame {
+                display: none !important;
+            }
+            .z4-panel {
+                padding: 6px 8px !important;
+                gap: 4px !important;
+            }
+            .z4-panel h2 {
+                font-size: 0.6rem !important;
+                padding-bottom: 3px !important;
+            }
+            .z4-categories-row {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 4px !important;
+            }
+            .z4-category {
+                padding: 3px 4px !important;
+                font-size: 0.64rem !important;
+            }
+            #z4-answers {
+                gap: 3px !important;
+            }
+            .z4-answer {
+                padding: 4px 7px !important;
+                font-size: 0.68rem !important;
+            }
+            .z4-panel-actions .z4-btn {
+                padding: 4px 6px !important;
+                font-size: 0.66rem !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2872,6 +3266,33 @@
         <!-- 4. REKA BENTUK APRESIASI (CLYDE): PENTAS APRESIASI MURID & PAMERAN KARYA KAMERA AR SKRIN PENUH (100% IKON SVG TANPA EMOJI) -->
         <div id="scene-dunia-4" class="world-scene">
             <div id="z4-shutter-flash"></div>
+
+            <!-- Modal Pratonton & Simpan Gambar ke Galeri Foto (Photos) / Fail (Mesra iPad, Telefon & Laptop) -->
+            <div id="z4-photo-modal" class="z4-photo-modal">
+                <div class="z4-photo-modal-box">
+                    <h2 style="font-family:'Press Start 2P',monospace; font-size:clamp(0.75rem, 1.5vw, 1.02rem); color:var(--pac-yellow); margin:0 0 6px;">
+                        GAMBAR KARYA SENI SIAP!
+                    </h2>
+                    <p style="font-size:0.82rem; color:#E0F7FA; margin:0 0 6px; line-height:1.4;">
+                        Pada <b>iPad / Telefon</b>: Tekan <b>SIMPAN KE GALERI</b> (pilih <i>Save Image</i>), atau <b>tekan &amp; tahan gambar di bawah</b> untuk simpan terus ke Galeri Foto.
+                    </p>
+                    <img id="z4-photo-preview-img" alt="Pratonton Gambar Apresiasi Seni">
+                    <div id="z4-photo-status" class="z4-photo-status-msg">Pilih cara simpan di bawah:</div>
+                    <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+                        <button class="z4-btn" onclick="ArtTheatreZ4.shareToGallery()">
+                            <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                            SIMPAN KE GALERI / KONGSI
+                        </button>
+                        <button class="z4-btn z4-btn-secondary" onclick="ArtTheatreZ4.downloadPhotoFile()">
+                            <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            MUAT TURUN FAIL (.PNG)
+                        </button>
+                        <button class="btn-mario btn-blue" onclick="ArtTheatreZ4.closePhotoModal()">
+                            TUTUP
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div class="z4-stage" id="z4-stage">
                 <!-- Drape Atas & Cahaya Sorot Pentas Skrin Penuh -->
                 <div class="z4-valance"></div>
@@ -2975,13 +3396,12 @@
 
                         <!-- KOLUM KANAN: PANEL PILIHAN APRESIASI & PENUTUP -->
                         <div class="z4-right-drawer" style="width: 100%;">
-                            <!-- SEKSYEN 1: JOM BERIKAN APRESIASI -->
+                            <!-- SEKSYEN 1: JOM BERIKAN APRESIASI (TANPA SKROL - PAPAR SEMUA SERENTAK) -->
                             <section class="z4-panel" id="z4-appreciation">
                                 <h2>
                                     <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="#FF4081" stroke="#FFE600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                                     JOM BERIKAN APRESIASI!
                                 </h2>
-                                <p class="z4-small">Pilih ayat yang ingin kamu sampaikan kepada rakan.</p>
 
                                 <div class="z4-categories-row">
                                     <button class="z4-category active" data-cat="warna" onclick="ArtTheatreZ4.showCategory('warna', this)">
@@ -3004,9 +3424,7 @@
 
                                 <div id="z4-answers"></div>
 
-                                <p class="z4-small">Tekan atau cubit (AR) ayat pilihan untuk menyampaikannya di pentas.</p>
-
-                                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+                                <div class="z4-panel-actions">
                                     <button class="z4-btn z4-btn-secondary" onclick="ArtTheatreZ4.clearSpeech()">
                                         <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
                                         PILIH AYAT LAIN
@@ -3018,20 +3436,20 @@
                                 </div>
                             </section>
 
-                            <!-- SEKSYEN 2: PENUTUP & PENGHARGAAN SENI -->
+                            <!-- SEKSYEN 2: PENUTUP & PENGHARGAAN SENI (TANPA SKROL) -->
                             <section class="z4-panel hidden" id="z4-ending">
                                 <h2>
                                     <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="#FFE600" stroke="#000" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                                     SYABAS!
                                 </h2>
-                                <p style="margin: 6px 0 10px;">Ayat Apresiasi Pilihan Kamu:</p>
-                                <div id="z4-ending-chosen-quote" style="background: rgba(10, 6, 22, 0.92); border: 3px solid var(--pac-yellow); border-radius: 16px; padding: 14px 18px; margin: 10px auto 14px; color: var(--pac-yellow); font-size: clamp(1.02rem, 1.8vw, 1.28rem); font-weight: 700; line-height: 1.5; box-shadow: 0 0 20px rgba(255, 230, 0, 0.35);">
-                                    “Saya suka penggunaan warna yang menarik dalam karya ini.”
+                                <p style="margin: 2px 0 6px; font-size: 0.85rem; color: #FFE8B3; font-weight: 700;">Ayat Apresiasi Pilihan Kamu:</p>
+                                <div id="z4-ending-chosen-quote" style="background: rgba(10, 6, 22, 0.92); border: 2.5px solid var(--pac-yellow); border-radius: 14px; padding: 10px 14px; margin: 6px auto 8px; color: var(--pac-yellow); font-size: clamp(0.88rem, 1.5vw, 1.12rem); font-weight: 700; line-height: 1.4; box-shadow: 0 0 16px rgba(255, 230, 0, 0.35);">
+                                    “Warna karya ini sangat cantik dan ceria!”
                                 </div>
-                                <p style="color: #f5d58c; font-weight: 700; font-size: 0.96rem; margin: 10px 0;">
-                                    Terima kasih kerana menghargai karya seni rakan-rakan. Setiap karya mempunyai keistimewaan tersendiri!
+                                <p style="color: #f5d58c; font-weight: 700; font-size: 0.84rem; margin: 4px 0 8px;">
+                                    Terima kasih kerana menghargai karya seni rakan!
                                 </p>
-                                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 14px;">
+                                <div class="z4-panel-actions">
                                     <button class="z4-btn" onclick="ArtTheatreZ4.restart()">
                                         <svg class="z4-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
                                         ULANG SEMULA
@@ -8549,27 +8967,23 @@
 
             static appreciation = {
                 warna: [
-                    "Saya suka penggunaan warna yang menarik dalam karya ini.",
-                    "Warna yang digunakan sangat cantik dan ceria.",
-                    "Gabungan warna dalam karya ini sangat harmoni.",
-                    "Warna yang dipilih membuatkan karya ini kelihatan istimewa."
+                    "Warna karya ini sangat cantik dan ceria!",
+                    "Gabungan warna ini sangat harmoni.",
+                    "Pilihan warna menjadikan karya ini menarik."
                 ],
                 garisan: [
-                    "Saya suka garisan yang digunakan dalam karya ini.",
-                    "Garisan yang pelbagai menjadikan karya ini menarik.",
-                    "Bentuk yang digunakan sangat kreatif.",
-                    "Saya tertarik dengan susunan rupa dalam karya ini."
+                    "Garisan dalam karya ini sangat kemas.",
+                    "Susunan rupa dan bentuk sangat kreatif.",
+                    "Pelbagai garisan menjadikan karya ini hidup."
                 ],
                 kreativiti: [
                     "Karya ini sangat kreatif dan unik!",
-                    "Saya kagum dengan idea yang digunakan.",
-                    "Karya ini menunjukkan imaginasi yang hebat.",
-                    "Saya suka cara kamu menghasilkan karya ini."
+                    "Idea dan imaginasi kamu sangat hebat.",
+                    "Cara kamu menghasilkan karya ini menarik."
                 ],
                 usaha: [
-                    "Tahniah kerana menghasilkan karya yang menarik!",
-                    "Kamu sangat kreatif dan berbakat.",
-                    "Saya suka usaha kamu menghasilkan karya ini.",
+                    "Tahniah atas usaha menghasilkan karya ini!",
+                    "Kamu sangat rajin, kreatif dan berbakat.",
                     "Teruskan berkarya dan mencuba idea baharu!"
                 ]
             };
@@ -8669,6 +9083,9 @@
                 }
             }
 
+            static lastCapturedDataUrl = null;
+            static lastCapturedBlob = null;
+
             static capturePhoto() {
                 SoundFX.init();
                 SoundFX.playWin();
@@ -8687,7 +9104,7 @@
                 snapCanvas.height = 720;
                 const sctx = snapCanvas.getContext("2d");
 
-                // 1. Latar Belakang Pentas atau Imej Kamera Langsung (Mirror)
+                // 1. Latar Belakang Pentas atau Imej Kamera Langsung Luas (Mirror 1280x720 Penuh)
                 const video = document.getElementById("webcam");
                 if (video && video.srcObject && video.readyState >= 2) {
                     const vw = video.videoWidth || 640;
@@ -8712,62 +9129,142 @@
                     sctx.fillRect(0, 0, snapCanvas.width, snapCanvas.height);
                 }
 
-                // 2. Bingkai Tirai Kiri & Kanan dan Valance Atas Pentas
-                const curtainGradL = sctx.createLinearGradient(0, 0, 110, 0);
-                curtainGradL.addColorStop(0, "#4d0017");
-                curtainGradL.addColorStop(0.5, "#9b002e");
-                curtainGradL.addColorStop(1, "#3b0011");
-                sctx.fillStyle = curtainGradL;
-                sctx.fillRect(0, 0, 74, snapCanvas.height);
-                sctx.fillRect(snapCanvas.width - 74, 0, 74, snapCanvas.height);
+                // 2. Bingkai Tirai Kiri & Kanan Yang Nipis (26px) Supaya Wajah & Karya Seni Kelihatan Sangat Luas
+                const curtainGrad = sctx.createLinearGradient(0, 0, 36, 0);
+                curtainGrad.addColorStop(0, "#4d0017");
+                curtainGrad.addColorStop(0.5, "#9b002e");
+                curtainGrad.addColorStop(1, "#3b0011");
+                sctx.fillStyle = curtainGrad;
+                sctx.fillRect(0, 0, 26, snapCanvas.height);
+                sctx.fillRect(snapCanvas.width - 26, 0, 26, snapCanvas.height);
 
                 sctx.fillStyle = "#61001b";
-                sctx.fillRect(0, 0, snapCanvas.width, 54);
+                sctx.fillRect(0, 0, snapCanvas.width, 38);
                 sctx.strokeStyle = "#FFE600";
-                sctx.lineWidth = 6;
-                sctx.strokeRect(8, 8, snapCanvas.width - 16, snapCanvas.height - 16);
+                sctx.lineWidth = 5;
+                sctx.strokeRect(6, 6, snapCanvas.width - 12, snapCanvas.height - 12);
 
-                // 3. Tajuk Pentas Di Atas
-                sctx.fillStyle = "rgba(18, 6, 22, 0.85)";
+                // 3. Lencana Tajuk Kompak Di Atas
+                sctx.fillStyle = "rgba(18, 6, 22, 0.82)";
                 sctx.beginPath();
-                sctx.roundRect(310, 18, 660, 48, 24);
+                sctx.roundRect(350, 14, 580, 40, 20);
+                sctx.fill();
+                sctx.strokeStyle = "#FFE600";
+                sctx.lineWidth = 2.5;
+                sctx.stroke();
+
+                sctx.fillStyle = "#FFE600";
+                sctx.font = "bold 16px 'Press Start 2P', monospace";
+                sctx.textAlign = "center";
+                sctx.textBaseline = "middle";
+                sctx.fillText("APRESIASI • PENTAS SENI VISUAL", 640, 35);
+
+                // 4. Kapsul Ayat Apresiasi Pilihan Murid Di Bawah
+                const speechEl = document.getElementById("z4-speech");
+                const rawSpeech = (this.selectedSentence && this.selectedSentence.trim().length > 0)
+                    ? `“${this.selectedSentence.trim()}”`
+                    : ((speechEl && speechEl.textContent.trim().length > 0)
+                        ? speechEl.textContent.trim()
+                        : "“Tahniah! Karya seni yang sangat kreatif dan menarik!”");
+
+                sctx.fillStyle = "rgba(14, 6, 22, 0.86)";
+                sctx.beginPath();
+                sctx.roundRect(110, snapCanvas.height - 86, 1060, 62, 18);
                 sctx.fill();
                 sctx.strokeStyle = "#FFE600";
                 sctx.lineWidth = 3;
                 sctx.stroke();
 
-                sctx.fillStyle = "#FFE600";
-                sctx.font = "bold 20px 'Press Start 2P', monospace";
-                sctx.textAlign = "center";
-                sctx.textBaseline = "middle";
-                sctx.fillText("APRESIASI • PENTAS SENI VISUAL", 640, 43);
-
-                // 4. Kapsul Ayat Apresiasi Di Bawah
-                const speechEl = document.getElementById("z4-speech");
-                const quoteText = (speechEl && speechEl.textContent.trim().length > 0)
-                    ? speechEl.textContent.trim()
-                    : "“Tahniah! Karya seni yang sangat kreatif dan menarik!”";
-
-                sctx.fillStyle = "rgba(18, 6, 22, 0.88)";
-                sctx.beginPath();
-                sctx.roundRect(140, snapCanvas.height - 104, 1000, 72, 20);
-                sctx.fill();
-                sctx.strokeStyle = "#FFE600";
-                sctx.lineWidth = 3.5;
-                sctx.stroke();
-
                 sctx.fillStyle = "#FFF2A6";
-                sctx.font = "bold 24px Fredoka, sans-serif";
-                sctx.fillText(quoteText, 640, snapCanvas.height - 68);
+                sctx.font = "bold 23px Fredoka, sans-serif";
+                sctx.fillText(rawSpeech, 640, snapCanvas.height - 54);
+
+                this.lastCapturedDataUrl = snapCanvas.toDataURL("image/png");
+                const previewImg = document.getElementById("z4-photo-preview-img");
+                if (previewImg) {
+                    previewImg.src = this.lastCapturedDataUrl;
+                }
+
+                const statusEl = document.getElementById("z4-photo-status");
+                const isTouchDevice = ("ontouchstart" in window) || (navigator.maxTouchPoints > 0);
+
+                snapCanvas.toBlob((blob) => {
+                    this.lastCapturedBlob = blob;
+                    const modal = document.getElementById("z4-photo-modal");
+                    if (modal) modal.classList.add("show");
+
+                    // Pada komputer riba / desktop, muat turun fail secara automatik sambil memaparkan pratonton
+                    if (!isTouchDevice) {
+                        this.downloadPhotoFile(true);
+                        if (statusEl) statusEl.textContent = "Gambar telah dimuat turun! Anda juga boleh simpan semula di bawah:";
+                    } else {
+                        if (statusEl) statusEl.textContent = "Tekan 'SIMPAN KE GALERI / KONGSI' atau tahan jari pada gambar untuk simpan ke Photos:";
+                    }
+                }, "image/png");
+            }
+
+            static async shareToGallery() {
+                SoundFX.init();
+                SoundFX.playPinch();
+                const statusEl = document.getElementById("z4-photo-status");
 
                 try {
-                    const link = document.createElement("a");
-                    link.download = "apresiasi-seni-pacman.png";
-                    link.href = snapCanvas.toDataURL("image/png");
-                    link.click();
+                    if (this.lastCapturedBlob && navigator.canShare) {
+                        const file = new File([this.lastCapturedBlob], "apresiasi-seni-pacman.png", { type: "image/png" });
+                        if (navigator.canShare({ files: [file] })) {
+                            await navigator.share({
+                                files: [file],
+                                title: "Apresiasi Karya Seni Visual",
+                                text: this.selectedSentence ? `“${this.selectedSentence}”` : "Apresiasi Karya Seni Visual"
+                            });
+                            if (statusEl) statusEl.textContent = "Berjaya! Pilih 'Save Image' pada menu untuk simpan ke Galeri Foto.";
+                            return;
+                        }
+                    }
                 } catch (err) {
-                    console.warn("Gagal memuat turun gambar:", err);
+                    if (err && err.name === "AbortError") return;
                 }
+
+                // Fallback jika pelayar tidak menyokong Web Share API fail: muat turun terus fail PNG
+                this.downloadPhotoFile(false);
+            }
+
+            static downloadPhotoFile(silent = false) {
+                if (!silent) {
+                    SoundFX.init();
+                    SoundFX.playCoin();
+                }
+                const statusEl = document.getElementById("z4-photo-status");
+                try {
+                    const fileName = `apresiasi-seni-${Date.now()}.png`;
+                    if (this.lastCapturedBlob) {
+                        const blobUrl = URL.createObjectURL(this.lastCapturedBlob);
+                        const link = document.createElement("a");
+                        link.download = fileName;
+                        link.href = blobUrl;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        setTimeout(() => URL.revokeObjectURL(blobUrl), 6000);
+                    } else if (this.lastCapturedDataUrl) {
+                        const link = document.createElement("a");
+                        link.download = fileName;
+                        link.href = this.lastCapturedDataUrl;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                    if (statusEl) statusEl.textContent = "Fail gambar (.PNG) telah disimpan ke dalam Fail / Muat Turun peranti anda!";
+                } catch (err) {
+                    if (statusEl) statusEl.textContent = "Sila tekan & tahan gambar di atas untuk memilih 'Simpan Imej'.";
+                }
+            }
+
+            static closePhotoModal() {
+                SoundFX.init();
+                SoundFX.playPinch();
+                const modal = document.getElementById("z4-photo-modal");
+                if (modal) modal.classList.remove("show");
             }
 
             static cycleCategory(direction) {
@@ -8867,7 +9364,7 @@
 
                 const chosen = (this.selectedSentence && this.selectedSentence.trim().length > 0)
                     ? this.selectedSentence.trim()
-                    : "Saya suka penggunaan warna yang menarik dalam karya ini.";
+                    : "Warna karya ini sangat cantik dan ceria!";
 
                 if (appPanel) appPanel.classList.add("hidden");
                 if (endPanel) endPanel.classList.remove("hidden");
